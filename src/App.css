@@ -14,7 +14,9 @@
 }
 
 .App-header { /*defines properties of the header only*/
-  padding-left: 10%;
+  padding-left: 2.5%;
+  padding-top: 2px;
+  padding-bottom: 2px;
   background-color: #282c34; /*background color*/
   min-height: 10vh; /*minimun height of the header in % of the screen size*/
   display: flex; /*unknown*/
@@ -23,6 +25,16 @@
   justify-content: left;
   font-size: calc(10px + 2vmin); /*font size and text size*/
   color: white; /*text color*/
+}
+
+.Header-item {
+  flex-direction: column;
+  text-decoration: none;
+  color: grey;
+}
+
+.Header-item:hover {
+  color: white;
 }
 
 .App-body {
