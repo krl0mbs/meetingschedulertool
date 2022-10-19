@@ -15,8 +15,6 @@
 
 .App-header { /*defines properties of the header only*/
   padding-left: 2.5%;
-  padding-top: 2px;
-  padding-bottom: 2px;
   background-color: #282c34; /*background color*/
   min-height: 10vh; /*minimun height of the header in % of the screen size*/
   display: flex; /*unknown*/
@@ -25,6 +23,15 @@
   justify-content: left;
   font-size: calc(10px + 2vmin); /*font size and text size*/
   color: white; /*text color*/
+}
+
+.Home-button {
+  color: grey;
+  text-decoration: none;
+}
+
+.Home-button:hover {
+  color: white;
 }
 
 .Header-item {
@@ -39,21 +46,13 @@
 
 .App-body {
   background-color: slategray; /*background color*/
-  min-height: 100vh; /*minimun height of the body in % of the screen size*/
+  min-height: 90vh; /*minimun height of the body in % of the screen size*/
   display: flex; /*unknown*/
   flex-direction: column; /*whether the text will be aligned in columns or rows*/
   align-items: center; /*dont know the difference between these two*/
   justify-content: center;
   font-size: calc(10px + 2vmin); /*font size and text size*/
   color: black; /*text color*/
-}
-
-.App-link { /*defines properties of the link*/
-  color: #61dafb; /*text color*/
-}
-
-.App-link:hover {
-  color: lightblue;
 }
 
 .Test {
