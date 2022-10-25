@@ -1,4 +1,4 @@
-import { View } from 'react-native-web';
+// import { View } from 'react-native-web';
 import React from 'react';
 import './App.css';
 import Table from './table'
@@ -27,38 +27,77 @@ function App() {
 
 // Custom tag that will create the table
 const Availability = () => (
-  <Table container flexDirection = 'column' alignItems = ''>
+  <Table container flexDirection = 'column'>
     {/* table below corresponds to the first row which is all headers */}
     <Table flex = {1} container flexDirection = 'row'>
-        <h4 style={{width: '100px'}}>Hours</h4>
-        <h4 style={{width: '50px'}}>7</h4>
-        <h4 style={{width: '50px'}}>8</h4>
-        <h4 style={{width: '50px'}}>9</h4>
-        <h4 style={{width: '50px'}}>10</h4>
-        <h4 style={{width: '50px'}}>11</h4>
-        <h4 style={{width: '50px'}}>12</h4>
-        <h4 style={{width: '50px'}}>13</h4>
-        <h4 style={{width: '50px'}}>14</h4>
-        <h4 style={{width: '50px'}}>15</h4>
-        <h4 style={{width: '50px'}}>16</h4>
-        <h4 >17</h4>
+        <h4 style={LeftColStyle}>Hours</h4>
+        <Times/>
     </Table>
+    
     {/* each Table past here is a new row. Right now these are just the titles */}
-    <Table  container flexDirection = "row">
-      <h4 style={{width: '100px'}}>Room 1</h4>
-      <button style={BUTTON}></button>
-      <button style={BUTTON}></button>
-    </Table>
     <Table container flexDirection = "row">
-      <h4>Room 2</h4>
+      <Room>1</Room>
     </Table>
+
+    <Table container flexDirection = "row">
+      <Room>2</Room>
+    </Table>
+    
   </Table>
 )
 
-const BUTTON ={
-  width: '50px',
-  height: '50px',
+function Room({num}) {
+  return (
+    <>
+      <h4 style={LeftColStyle}>Room {num}</h4>
+      <button style={ButtonStyle}></button>
+      <button style={ButtonStyle}></button>
+      <button style={ButtonStyle}></button>
+      <button style={ButtonStyle}></button>
+      <button style={ButtonStyle}></button>
+      <button style={ButtonStyle}></button>
+      <button style={ButtonStyle}></button>
+      <button style={ButtonStyle}></button>
+      <button style={ButtonStyle}></button>
+      <button style={ButtonStyle}></button>
+      <button style={ButtonStyle}></button>
+    </>
+  )
+}
+
+const Times = () => (
+  <>
+    <h4 style={TimeStyle}>7</h4>
+    <h4 style={TimeStyle}>8</h4>
+    <h4 style={TimeStyle}>9</h4>
+    <h4 style={TimeStyle}>10</h4>
+    <h4 style={TimeStyle}>11</h4>
+    <h4 style={TimeStyle}>12</h4>
+    <h4 style={TimeStyle}>13</h4>
+    <h4 style={TimeStyle}>14</h4>
+    <h4 style={TimeStyle}>15</h4>
+    <h4 style={TimeStyle}>16</h4>
+    <h4 style={TimeStyle}>17</h4>
+  </>
+)
+
+const TimeStyle ={
+  width: '5rem', 
+  display: 'flex', 
+  alignItems: 'center', 
+  justifyContent: 'center'
+}
+
+const ButtonStyle ={
+  width: '5rem',
+  height: '5rem',
   backgroundColor: '#1f97e5',
+}
+
+const LeftColStyle ={
+  width: '10rem',
+  display: 'flex', 
+  alignItems: 'center'
 }
 
 export default App;
