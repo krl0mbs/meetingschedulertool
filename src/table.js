@@ -1,4 +1,3 @@
-import './table.css';
 import React from 'react';
 // import { StyleSheet, Text, View} from 'react-native-web';
 // import { render } from '@testing-library/react';
@@ -20,11 +19,10 @@ const Table = (props) => (
       margin: props.margin || '0',
       padding: props.padding || '0',
       width: props.width || 'auto',
-      height: props.height || '5rem',
+      height: props.height || '4rem',
       maxWidth: props.maxWidth || 'none',
       backgroundColor: props.backgroundColor || 'none',
-      
-      border: '1px solid rgba(0, 0, 0, .1)'
+      // border: props.border || '1px solid rgba(0, 0, 0, 1)'
     }}
   >
     {props.children}

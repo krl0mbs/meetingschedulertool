@@ -1,9 +1,6 @@
-// import { View } from 'react-native-web';
-import React from 'react';
+import React, { Children } from 'react';
 import './App.css';
 import Table from './table'
-import './table.css'
-
 
 function App() {
   return (
@@ -21,7 +18,7 @@ function App() {
       <body className="App-body">
         <Availability/>
       </body>
-    </div>  
+    </div>
   );
 }
 
@@ -43,13 +40,17 @@ const Availability = () => (
       <Room>2</Room>
     </Table>
     
+    <Table container flexDirection = "row">
+      <Room>3</Room>
+    </Table>
+
   </Table>
 )
 
-function Room({num}) {
+function Room({children}) { // block used to make new rooms, adds a row with buttons
   return (
     <>
-      <h4 style={LeftColStyle}>Room {num}</h4>
+      <h4 style={LeftColStyle}>Room {children}</h4>
       <button style={ButtonStyle}></button>
       <button style={ButtonStyle}></button>
       <button style={ButtonStyle}></button>
@@ -82,22 +83,23 @@ const Times = () => (
 )
 
 const TimeStyle ={
-  width: '5rem', 
+  width: '4rem', 
   display: 'flex', 
   alignItems: 'center', 
   justifyContent: 'center'
 }
 
 const ButtonStyle ={
-  width: '5rem',
-  height: '5rem',
+  width: '4rem',
+  height: '4rem',
   backgroundColor: '#1f97e5',
 }
 
 const LeftColStyle ={
   width: '10rem',
   display: 'flex', 
-  alignItems: 'center'
+  alignItems: 'center',
+  padding: '0 1rem'
 }
 
 export default App;
