@@ -36,7 +36,7 @@ const Availability = () => (
       <Room>1</Room>
     </Table>
 
-    <Table container flexDirection = "row">
+    <Table container flexDirection = "row"> {/* each of these adds a new row to the table, with the number being the room number*/}
       <Room>2</Room>
     </Table>
     
@@ -50,7 +50,7 @@ const Availability = () => (
 function Room({children}) { // block used to make new rooms, adds a row with buttons
   return (
     <>
-      <h4 style={LeftColStyle}>Room {children}</h4>
+      <h4 style={LeftColStyle}>Room {children}</h4> {/* children here is the room number */}
       <button style={ButtonStyle}></button>
       <button style={ButtonStyle}></button>
       <button style={ButtonStyle}></button>
@@ -99,7 +99,6 @@ const LeftColStyle ={
   width: '10rem',
   display: 'flex', 
   alignItems: 'center',
-  padding: '0 1rem'
 }
 
 export default App;
