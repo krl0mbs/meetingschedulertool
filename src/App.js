@@ -51,7 +51,7 @@ function Room({children}) { // block used to make new rooms, adds a row with but
   return (
     <>
       <h4 style={LeftColStyle}>Room {children}</h4> {/* children here is the room number */}
-      <button style={ButtonStyle}></button>
+      <button style={ButtonStyle} onClick = {e => e.target.style = clickHandler(e.target.style)}></button>
       <button style={ButtonStyle}></button>
       <button style={ButtonStyle}></button>
       <button style={ButtonStyle}></button>
@@ -63,6 +63,12 @@ function Room({children}) { // block used to make new rooms, adds a row with but
       <button style={ButtonStyle}></button>
       <button style={ButtonStyle}></button>
     </>
+  )
+}
+
+function clickHandler(style) {
+  return(
+    style = {ButtonSelected}
   )
 }
 
@@ -93,6 +99,18 @@ const ButtonStyle ={
   width: '4rem',
   height: '4rem',
   backgroundColor: '#1f97e5',
+}
+
+const ButtonSelected ={
+  width: '4rem',
+  height: '4rem',
+  backgroundColor: 'gray',
+}
+
+const ButtonTaken ={
+  width: '4rem',
+  height: '4rem',
+  backgroundColor: 'purple',
 }
 
 const LeftColStyle ={
