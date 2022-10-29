@@ -1,6 +1,9 @@
 import React, { Children } from 'react';
 import './App.css';
-import Table from './table'
+import Table from './table';
+import {useState} from 'react';
+import { Calendar } from 'react-calendar';
+
 
 function App() {
   return (
@@ -47,36 +50,52 @@ const Availability = () => (
   </Table>
 )
 
+// TODO Once database is done, add a system for database requests to get the status of each individual button
+// Ideas: Child value from room, that will tell us the row so we can modify only buttons from that row
+//        This should allow us to change doPurp for each individual button on each row rather than all buttons
+
 function Room({children}) { // block used to make new rooms, adds a row with buttons
   return (
     <>
       <h4 style={LeftColStyle}>Room {children}</h4> {/* children here is the room number */}
-      <button style={ButtonStyle} onClick = {e => e.target.style = clickHandler(e.target.style)}></button>
-      <button style={ButtonStyle}></button>
-      <button style={ButtonStyle}></button>
-      <button style={ButtonStyle}></button>
-      <button style={ButtonStyle}></button>
-      <button style={ButtonStyle}></button>
-      <button style={ButtonStyle}></button>
-      <button style={ButtonStyle}></button>
-      <button style={ButtonStyle}></button>
-      <button style={ButtonStyle}></button>
-      <button style={ButtonStyle}></button>
+      <Button></Button> {/* custom button object */}
+      <Button></Button>
+      <Button></Button>
+      <Button></Button>
+      <Button></Button>
+      <Button></Button>
+      <Button></Button>
+      <Button></Button>
+      <Button></Button>
+      <Button></Button>
+      <Button></Button>
     </>
   )
 }
 
-function clickHandler(style) {
-  return(
-    style = {ButtonSelected}
-  )
+function Button() { {/* custom button object */}
+  const [isActive, setIsActive] = useState(false);
+
+  const doPurp = false;
+
+  if(doPurp){ // checks is the buttons should be purple, will be modified later so not all buttons get changed
+    return (
+      <button style={ButtonTaken}></button>
+    )
+  }
+
+  else if(!doPurp){ 
+    return ( // if the button is clicked, it will change from blue to grey and vice versa
+      <button style={(isActive ? ButtonSelected : ButtonStyle) } onClick = {() => {setIsActive(current => !current);}}></button>
+    )
+  }
 }
 
-const Times = () => (
-  <>
-    <h4 style={TimeStyle}>7</h4>
-    <h4 style={TimeStyle}>8</h4>
-    <h4 style={TimeStyle}>9</h4>
+const Times = () => ( // exclusively holds the values that belong in the first row, ie the times that meetings can be held
+  <> 
+    <h4 style={TimeStyle}> 7</h4>
+    <h4 style={TimeStyle}> 8</h4>
+    <h4 style={TimeStyle}> 9</h4>
     <h4 style={TimeStyle}>10</h4>
     <h4 style={TimeStyle}>11</h4>
     <h4 style={TimeStyle}>12</h4>
@@ -88,32 +107,32 @@ const Times = () => (
   </>
 )
 
-const TimeStyle ={
+const TimeStyle ={ // styles for the items in the first row
   width: '4rem', 
   display: 'flex', 
   alignItems: 'center', 
   justifyContent: 'center'
 }
 
-const ButtonStyle ={
-  width: '4rem',
-  height: '4rem',
-  backgroundColor: '#1f97e5',
+const ButtonStyle ={ // styles for when a particular time is available
+  width: '4rem', 
+  height: '4rem', 
+  backgroundColor: '#1f97e5'
 }
 
-const ButtonSelected ={
+const ButtonSelected ={ // styles for when a particular time is selected
   width: '4rem',
   height: '4rem',
-  backgroundColor: 'gray',
+  backgroundColor: 'gray'
 }
 
-const ButtonTaken ={
+const ButtonTaken ={ // styles for when a particular time is taken
   width: '4rem',
   height: '4rem',
   backgroundColor: 'purple',
 }
 
-const LeftColStyle ={
+const LeftColStyle ={ // styles for the left column
   width: '10rem',
   display: 'flex', 
   alignItems: 'center',

@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "react": "^18.2.0",
     "react-burger-menu": "^3.0.8",
+    "react-calendar": "^3.9.0",
     "react-codes-input": "^2.2.3",
     "react-dom": "^18.2.0",
     "react-native-web": "^0.18.9",
