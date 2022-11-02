@@ -21,7 +21,7 @@ function App() {
       </header>
       <body className="App-body">
         <Availability/>
-        <ConfrimButton></ConfrimButton>
+        <ConfrimButton/>
       </body>
     </div>
   );
@@ -29,7 +29,7 @@ function App() {
 
 // Custom tag that will create the table
 const Availability = () => (
-  <Table container flexDirection = 'column'>
+  <Table container flexDirection = 'column' className='table-style'>
     {/* table below corresponds to the first row which is all headers */}
     <Table flex = {1} container flexDirection = 'row'>
         <h4 style={LeftColStyle}>Hours</h4>
@@ -152,7 +152,9 @@ class ConfrimButton extends Component{
 
   render(){
     return(
-      <button>Confirm</button>
+      <div className='right-side'>
+        <button className='button-style'>Confirm</button>
+      </div>
     );
   }
 
