@@ -3,6 +3,7 @@ import './App.css';
 import Table from './table';
 import {useState} from 'react';
 import { Calendar } from 'react-calendar';
+import { Component } from 'react';
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
       </header>
       <body className="App-body">
         <Availability/>
+        <ConfrimButton></ConfrimButton>
       </body>
     </div>
   );
@@ -136,6 +138,27 @@ const LeftColStyle ={ // styles for the left column
   width: '10rem',
   display: 'flex', 
   alignItems: 'center',
+}
+
+// Attempting to make a button class that has the capability to turn selected buttons purple
+// Will hoefully take in a set of integers and turn grays into purples (0 = blue, 1 = gray, 2 = purple)
+class ConfrimButton extends Component{
+  state = {grays: []};
+
+  async componentDidMount(){
+    const grays = JSON.parse(localStorage.getItem("cart"));
+    this.setState({grays});
+  }
+
+  render(){
+    return(
+      <button>Confirm</button>
+    );
+  }
+
+  setPurp() {
+
+  }
 }
 
 export default App;
