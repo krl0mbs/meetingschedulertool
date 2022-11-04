@@ -2,7 +2,6 @@ import React, { Children } from 'react';
 import './App.css';
 import Table from './table';
 import {useState} from 'react';
-import { Calendar } from 'react-calendar';
 import { Component } from 'react';
 
 
@@ -19,10 +18,10 @@ function App() {
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
         <a className="Header-item" href="/managebookings">Manage Bookings</a>
       </header>
-      <body className="App-body">
+      <div className="App-body">
         <Availability/>
         <ConfrimButton/>
-      </body>
+      </div>
     </div>
   );
 }
@@ -57,26 +56,24 @@ const Availability = () => (
 //        This should allow us to change doPurp for each individual button on each row rather than all buttons
 
 function Room({children}) { // block used to make new rooms, adds a row with buttons
+  
+  const arr = [0,1,2,3,4,5,6,7,8,9,10];
   return (
     <>
       <h4 style={LeftColStyle}>Room {children}</h4> {/* children here is the room number */}
-      <Button></Button> {/* custom button object */}
-      <Button></Button>
-      <Button></Button>
-      <Button></Button>
-      <Button></Button>
-      <Button></Button>
-      <Button></Button>
-      <Button></Button>
-      <Button></Button>
-      <Button></Button>
-      <Button></Button>
+        {arr.map((e) => {
+          return <Button></Button>
+        })}
     </>
   )
 }
 
 function Button() { {/* custom button object */}
   const [isActive, setIsActive] = useState(false);
+  // const [isConfirmed, setIsConfirmed] = useState(false);
+  
+  // const aciveStyle = `.activeButton`;
+  // const pendingStyle = ``;
 
   const doPurp = false;
 

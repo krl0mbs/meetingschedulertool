@@ -14,17 +14,6 @@
   color: black; /*text color*/
 }
 
-.Home-button {
-  color: white;
-  text-decoration: none;
-}
-
-.Header-item {
-  flex-direction: column;
-  text-decoration: none;
-  color: white;
-}
-
 .App-body {
   background-color: rgb(175, 175, 175); /*background color*/
   min-height: 90vh; /*minimun height of the body in % of the screen size*/
@@ -41,6 +30,7 @@
 .button-style {
   width: 5rem;
   height: 2rem;
+  background-color: rgb(255, 255, 255);
   display: flex;
   align-items: center;
   justify-content: center;
