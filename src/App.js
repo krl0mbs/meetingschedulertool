@@ -1,8 +1,23 @@
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
-import Sidebar from './sidebar';  
+//import '../server/index'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+
 
 function App() {
+
+  const [data, setData] = useState();
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(
+        'http://localhost:3002/api/meetings/all',
+      )
+      console.log(result);
+      setData(result.data);
+    };
+    fetchData();
+  }, []);
   return (
     <div className="App">
       {/* <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} /> */}
@@ -15,10 +30,15 @@ function App() {
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
         <a className="Header-item" href="/managebookings">Manage Bookings</a>
       </header>
-      <body className="App-body"></body>
+      <h1>{data.toString()}</h1>
     </div>
     
   );
 }
 
 export default App;
+
+
+/*
+{homes.map(home => <div>{home.name}</div>)}
+*/
