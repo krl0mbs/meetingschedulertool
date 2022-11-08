@@ -21,7 +21,16 @@ app.get("/api/meetings/one", (req,res)=>{
     res.send({"message": "Success"});
 });
 
-//sql.escape();
+app.post("/api/meetings/post", (req,res)=>{
+const name = req.body.name;
+console.log(name);
+db.query("INSERT INTO meetings (name) VALUES (?)",[name], (err,result)=> {
+    if(err) {
+       console.log(err)
+       } 
+       console.log(result)
+    })
+})
 
 app.listen(PORT);
 // // Route to get one post
