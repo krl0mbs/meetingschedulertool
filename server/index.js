@@ -8,7 +8,24 @@ const PORT = 3002;
 app.use(cors());
 app.use(express.json())
 
-// Route to get all meetings
+app.get("/api/meetings/distinct", (req,res)=>{
+db.query("SELECT DISTINCT room FROM meetings", (err,result)=>{
+    if(err) {
+    console.log(err)
+    } 
+res.send(result)
+});   });
+
+app.get("/api/meetings/reservations", (req,res)=>{
+db.query("SELECT * FROM meetings", (err,result)=>{
+    if(err) {
+    console.log(err)
+    } 
+res.send(result)
+});   });
+
+// Below here is unused code that stays to help understand what is going on
+
 app.get("/api/meetings/all", (req,res)=>{
 db.query("SELECT * FROM meetings", (err,result)=>{
     if(err) {

@@ -7,28 +7,31 @@ import axios from 'axios';
 
 function App() {
 
-  const [data, setData] = useState([]);
+  const [room, setRoom] = useState([]);
   const [text, setText] = useState('');
-  const handleChange = (event) => {
-    setText(event.target.value);
-  }
+
   const handleClick = async(event) => {
     await axios.post("http://localhost:3002/api/meetings/post", {
       name: text
     })
-    .then(function (response) {
-      console.log(response);
-    })
   }
+  // const fetchData = async () => {
+  //   const result = await axios(
+  //     'http://localhost:3002/api/meetings/all',
+  //   )
+  //   setData(result.data);
+  // };
+  const fetchRooms = async () => {
+    const result = await axios(
+      'http://localhost:3002/api/meetings/distinct',
+    )
+    setRoom(result.data);
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios(
-        'http://localhost:3002/api/meetings/all',
-      )
-      setData(result.data);
-    };
-    fetchData();
+    fetchRooms();
   }, []);
+
   return (
     <div className="App">
       {/* <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} /> */}
@@ -42,16 +45,11 @@ function App() {
         <a className="Header-item" href="/managebookings">Manage Bookings</a>
       </header>
       {
-        data.filter((el) => {
-          return el.id == 1;
-        })
-        .map((el) => {
-          return <h1 key={el.id}>{el.name}</h1>
+        room.map((el) => {
+          return <h1>{el.room}</h1>
         })
       }
-    <input type='text' onChange={handleChange}></input>
-    <p>{text}</p>
-    <button onClick={handleClick}>Push me!</button>
+      <button onClick={handleClick}>Push me!</button>
     </div>
     
   );
