@@ -1,10 +1,7 @@
 import React from 'react';
 import './App.css';
-import Table from './table';
 import Navbar from "./Navbar";
 import "./Navbar.css";
-import {useState} from 'react';
-import { Component } from 'react';
 import {Route, Routes} from "react-router-dom";
 import "./pages/pageCSS/Home.css";
 
