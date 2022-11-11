@@ -33,7 +33,7 @@ export default function Book() {
 
     return (
         <div className="Book-body">
-            {console.log(room[0])}
+            {console.log(room)}
             <Availability/>
             <ConfrimButton/>
         </div>
