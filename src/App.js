@@ -13,6 +13,32 @@ import About from './pages/About';
 import Test from './pages/Test';
 
 function App() {
+
+  const [room, setRoom] = useState([]);
+  const [text, setText] = useState('');
+
+  const handleClick = async(event) => {
+    await axios.post("http://localhost:3002/api/meetings/post", {
+      name: text
+    })
+  }
+  // const fetchData = async () => {
+  //   const result = await axios(
+  //     'http://localhost:3002/api/meetings/all',
+  //   )
+  //   setData(result.data);
+  // };
+  const fetchRooms = async () => {
+    const result = await axios(
+      'http://localhost:3002/api/meetings/distinct',
+    )
+    setRoom(result.data);
+  };
+
+  useEffect(() => {
+    fetchRooms();
+  }, []);
+
   return (
     <div className="App">
       <Navbar/>
