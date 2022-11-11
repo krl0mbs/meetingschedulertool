@@ -1,0 +1,56 @@
+/*display: flex allows the alignment, padding, etc to be manipulated*/
+
+* { /*defines general settings for all display boxes*/
+    box-sizing: border-box; /*defines how the box's witdth and height will be calculated*/
+}
+
+body { /*modifies the default settings for the body tag*/
+    margin: 0;
+}
+
+nav { /*this block is for the navbar design, notice there is no period at the beginning bc it is not a class*/
+    background-color: #333;
+    color: #ccc;
+    display: flex; 
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 2rem;
+    padding: 0 1rem;
+    min-height: 10vh;
+} 
+
+.mst-home { /*modifies the website title, the leftmost navbar item*/
+    font-size: 1.5rem;
+    min-height: 10vh;
+}
+
+.Container { /*used in App.js to modify what is displayed below the navbar*/
+    margin: 0;
+    text-align: center;
+}
+
+nav ul { /*this block modifies item within the ul tags, which stands for unordered list*/
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+}
+
+nav a { /*this modifies the anchor (a) tag, which is used for links, it also modifies the Link imported tag bc that tag uses anchors*/
+    text-decoration: none;
+    color: inherit;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: .25rem;
+}
+
+nav li.active {
+    background-color: #555;
+} /*this block is used when a navbar item has the active className*/
+
+nav li:hover { /*this block is used when a navbar item is hovered*/
+    background-color: #777;
+}
+
