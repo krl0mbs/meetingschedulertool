@@ -7,8 +7,11 @@ import { Component } from 'react';
 
 export default function Book() {
   const [room, setRoom] = useState([]);
+  const [meetings, setMeetings] = useState([]);
   const [text, setText] = useState('');
   const tempName = [];
+  const tempBookingNames = [];
+  const tempTimes = [];
 
   const connectToDB = async () => {
     const result = await axios(
@@ -27,16 +30,24 @@ export default function Book() {
   //   )
   //   setData(result.data);
   // };
-  const fetchRooms = async () => {
+  const fetchRoom = async () => {
     const result = await axios(
       'http://localhost:3002/api/meetings/distinct',
     )
     setRoom(result.data);
   };
 
+  const fetchMeetings = async () => {
+    const result = await axios(
+      'http://localhost:3002/api/meetings/reservations',
+    )
+    setMeetings(result.data);
+  };
+
   useEffect(() => {
     connectToDB();
-    fetchRooms();
+    fetchRoom();
+    fetchMeetings();
   }, []);
 
   
@@ -47,7 +58,15 @@ export default function Book() {
             tempName.push(el.room)
           })
       }
-            {console.log(tempName)}
+
+      {
+          meetings.map(({ID, room, date, start, end}) => {
+            tempBookingNames.push(room)
+            tempTimes.push(start, end)
+          })
+      }
+
+            {console.log(tempTimes)}
             <Availability>{tempName}</Availability>
             <ConfrimButton/>
         </div>
@@ -92,7 +111,7 @@ function Room({children}) { // block used to make new rooms, adds a row with but
   )
 }
   
-function Button() { {/* custom button object */}
+function Button() { {/* custom button */}
     const [isActive, setIsActive] = useState(false);
     // const [isConfirmed, setIsConfirmed] = useState(false);
     
