@@ -8,6 +8,7 @@ import { Component } from 'react';
 export default function Book() {
   const [room, setRoom] = useState([]);
   const [text, setText] = useState('');
+  const tempName = [];
 
   const connectToDB = async () => {
     const result = await axios(
@@ -38,17 +39,23 @@ export default function Book() {
     fetchRooms();
   }, []);
 
-    return (
-        <div className="Book-body">
-            {console.log(room[0])}
-            <Availability/>
+  
+  return (
+    <div className="Book-body">
+      {
+          room.map((el) => {
+            tempName.push(el.room)
+          })
+      }
+            {console.log(tempName)}
+            <Availability>{tempName}</Availability>
             <ConfrimButton/>
         </div>
     )
 }
 
 // Custom tag that will create the table
-const Availability = () => (
+const Availability = ({children}) => (
     <Table container flexDirection = 'column' className='table-style'>
       {/* table below corresponds to the first row which is all headers */}
       <Table flex = {1} container flexDirection = 'row'>
@@ -58,15 +65,11 @@ const Availability = () => (
       
       {/* each Table past here is a new row. Right now these are just the titles */}
       <Table container flexDirection = "row">
-        <Room>1</Room>
+        <Room>{children[0]}</Room>
       </Table>
   
       <Table container flexDirection = "row"> {/* each of these adds a new row to the table, with the number being the room number*/}
-        <Room>2</Room>
-      </Table>
-      
-      <Table container flexDirection = "row">
-        <Room>3</Room>
+        <Room>{children[1]}</Room>
       </Table>
   
     </Table>
@@ -81,7 +84,7 @@ function Room({children}) { // block used to make new rooms, adds a row with but
   const arr = [0,1,2,3,4,5,6,7,8,9,10];
   return (
     <>
-      <h4 style={LeftColStyle}>Room {children}</h4> {/* children here is the room number */}
+      <h4 style={LeftColStyle}>{children}</h4> {/* children here is the room number */}
       {arr.map((e) => {
         return <Button></Button>
       })}
