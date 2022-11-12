@@ -38,6 +38,14 @@ app.get("/api/meetings/one", (req,res)=>{
     res.send({"message": "Success"});
 });
 
+app.get("/api/meetings/connect", (req,res)=>{
+db.query("USE meetingdb", (err,result)=>{
+    if(err) {
+    console.log(err)
+    } 
+res.send({"message": "Success"})
+});    });
+
 app.post("/api/meetings/post", (req,res)=>{
 const name = req.body.name;
 console.log(name);

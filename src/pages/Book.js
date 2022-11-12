@@ -9,6 +9,12 @@ export default function Book() {
   const [room, setRoom] = useState([]);
   const [text, setText] = useState('');
 
+  const connectToDB = async () => {
+    const result = await axios(
+      'http://localhost:3002/api/meetings/connect',
+    )
+  };
+
   // const handleClick = async(event) => {
   //   await axios.post("http://localhost:3002/api/meetings/post", {
   //     name: text
@@ -28,12 +34,13 @@ export default function Book() {
   };
 
   useEffect(() => {
+    connectToDB();
     fetchRooms();
   }, []);
 
     return (
         <div className="Book-body">
-            {console.log(room)}
+            {console.log(room[0])}
             <Availability/>
             <ConfrimButton/>
         </div>
