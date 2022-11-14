@@ -6,6 +6,7 @@ import axios from "axios";
 import { Component } from 'react';
 
 export default function Book() {
+  // Various arrays that will be used to store db information
   const [room, setRoom] = useState([]);
   const [meetings, setMeetings] = useState([]);
   const [text, setText] = useState('');
@@ -13,6 +14,7 @@ export default function Book() {
   const tempBookingNames = [];
   const tempTimes = [];
 
+  // Function for connecting to the db
   const connectToDB = async () => {
     const result = await axios(
       'http://localhost:3002/api/meetings/connect',
@@ -30,6 +32,8 @@ export default function Book() {
   //   )
   //   setData(result.data);
   // };
+
+  // Function that will get all of the unique room names
   const fetchRoom = async () => {
     const result = await axios(
       'http://localhost:3002/api/meetings/distinct',
@@ -37,6 +41,7 @@ export default function Book() {
     setRoom(result.data);
   };
 
+  // Function that will get the meeting data for each meeting 
   const fetchMeetings = async () => {
     const result = await axios(
       'http://localhost:3002/api/meetings/reservations',
@@ -44,6 +49,7 @@ export default function Book() {
     setMeetings(result.data);
   };
 
+  // Connect to the db and perform fetches that will get unique room names as well as information pertaining to each booking
   useEffect(() => {
     connectToDB();
     fetchRoom();
@@ -53,28 +59,30 @@ export default function Book() {
   
   return (
     <div className="Book-body">
+      {/* Map the name data gathered from the db to a temporary array that gets passed to the Availability tag */}
       {
-          room.map((el) => {
-            tempName.push(el.room)
-          })
+        room.map((el) => {
+          tempName.push(el.room)
+        })
       }
 
-      {
-          meetings.map(({ID, room, date, start, end}) => {
-            tempBookingNames.push(room)
-            tempTimes.push(start, end)
-          })
-      }
+      {/* Map the booking info that will be used by the table (room name, start time, and end time for each booking) */}
+      {/* {
+        meetings.map(({ID, room, date, start, end}) => {
+          tempBookingNames.push(room)
+          tempTimes.push(room, start, end)
+        })
+      } */}
 
-            {console.log(tempTimes)}
-            <Availability>{tempName}</Availability>
-            <ConfrimButton/>
-        </div>
+      {console.log(meetings)}
+      <Availability meetings = {meetings}/>
+      <ConfrimButton/>
+    </div>
     )
 }
 
 // Custom tag that will create the table
-const Availability = ({children}) => (
+const Availability = ({meetings}) => (
     <Table container flexDirection = 'column' className='table-style'>
       {/* table below corresponds to the first row which is all headers */}
       <Table flex = {1} container flexDirection = 'row'>
@@ -83,42 +91,54 @@ const Availability = ({children}) => (
       </Table>
       
       {/* each Table past here is a new row. Right now these are just the titles */}
-      <Table container flexDirection = "row">
+      {/* <Table container flexDirection = "row">
         <Room>{children[0]}</Room>
-      </Table>
+      </Table> */}
   
-      <Table container flexDirection = "row"> {/* each of these adds a new row to the table, with the number being the room number*/}
+    {/* each of these adds a new row to the table, with the number being the room number*/}
+      {/* <Table container flexDirection = "row">
         <Room>{children[1]}</Room>
-      </Table>
-  
+      </Table> */}
+
+    {meetings.map(meeting => {
+      return (
+        <Table container flexDirection="row">
+          <Room meetings={meeting} />
+        </Table> 
+      )
+    })}
+
     </Table>
+
 )
   
 // TODO Once database is done, add a system for database requests to get the status of each individual button
 // Ideas: Child value from room, that will tell us the row so we can modify only buttons from that row
 //        This should allow us to change doPurp for each individual button on each row rather than all buttons
 
-function Room({children}) { // block used to make new rooms, adds a row with buttons
-  
+function Room({meetings}) { // block used to make new rooms, adds a row with buttons
+  const tempTimes = [meetings['7'], meetings['8'], meetings['9'], meetings['10'], meetings['11'], meetings['12'], meetings['13'], meetings['14'], meetings['15'], meetings['16'], meetings['17']];
   const arr = [0,1,2,3,4,5,6,7,8,9,10];
+  console.log(tempTimes);
   return (
     <>
-      <h4 style={LeftColStyle}>{children}</h4> {/* children here is the room number */}
-      {arr.map((e) => {
-        return <Button></Button>
+      <h4 style={LeftColStyle}>{meetings.room}</h4> {/* children here is the room number */}
+      {tempTimes.map((e) => {
+        return <Button availabilty = {e}/>
       })}
+      
     </>
   )
 }
   
-function Button() { {/* custom button */}
+function Button({availabilty}) { {/* custom button */}
     const [isActive, setIsActive] = useState(false);
     // const [isConfirmed, setIsConfirmed] = useState(false);
     
     // const aciveStyle = `.activeButton`;
     // const pendingStyle = ``;
   
-    const doPurp = false;
+    const doPurp = availabilty;
   
     if(doPurp){ // checks is the buttons should be purple, will be modified later so not all buttons get changed
       return (
