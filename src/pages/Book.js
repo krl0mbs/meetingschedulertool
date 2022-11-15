@@ -66,15 +66,6 @@ export default function Book() {
         })
       }
 
-      {/* Map the booking info that will be used by the table (room name, start time, and end time for each booking) */}
-      {/* {
-        meetings.map(({ID, room, date, start, end}) => {
-          tempBookingNames.push(room)
-          tempTimes.push(room, start, end)
-        })
-      } */}
-
-      {console.log(meetings)}
       <Availability meetings = {meetings}/>
       <ConfrimButton/>
     </div>
@@ -89,17 +80,8 @@ const Availability = ({meetings}) => (
           <h4 style={LeftColStyle}>Hours</h4>
           <Times/>
       </Table>
-      
-      {/* each Table past here is a new row. Right now these are just the titles */}
-      {/* <Table container flexDirection = "row">
-        <Room>{children[0]}</Room>
-      </Table> */}
-  
-    {/* each of these adds a new row to the table, with the number being the room number*/}
-      {/* <Table container flexDirection = "row">
-        <Room>{children[1]}</Room>
-      </Table> */}
 
+    {/* Dynamically creates rows for table and passes through the meeting data gathered from the db */}
     {meetings.map(meeting => {
       return (
         <Table container flexDirection="row">
@@ -111,18 +93,33 @@ const Availability = ({meetings}) => (
     </Table>
 
 )
-  
-// TODO Once database is done, add a system for database requests to get the status of each individual button
-// Ideas: Child value from room, that will tell us the row so we can modify only buttons from that row
-//        This should allow us to change doPurp for each individual button on each row rather than all buttons
 
+/* This is a function that will create a row of the booking table.
+   It will take in an object array that contains the list of meeting data gathered from the db.
+   It will return the created row (this will be different each time based on the meeting data).
+*/
 function Room({meetings}) { // block used to make new rooms, adds a row with buttons
-  const tempTimes = [meetings['7'], meetings['8'], meetings['9'], meetings['10'], meetings['11'], meetings['12'], meetings['13'], meetings['14'], meetings['15'], meetings['16'], meetings['17']];
-  const arr = [0,1,2,3,4,5,6,7,8,9,10];
-  console.log(tempTimes);
+  // Isolates the db columns that contain availabilities for each time block and puts them in an array
+  const tempTimes = [
+    meetings['7'], 
+    meetings['8'], 
+    meetings['9'], 
+    meetings['10'], 
+    meetings['11'], 
+    meetings['12'], 
+    meetings['13'], 
+    meetings['14'], 
+    meetings['15'], 
+    meetings['16'], 
+    meetings['17']
+  ];
+
+  /* This section returns the finished column by printing out the room name gathered from the db,
+     then passing in the time availabilities to a mapping function that creates each individual button
+  */
   return (
     <>
-      <h4 style={LeftColStyle}>{meetings.room}</h4> {/* children here is the room number */}
+      <h4 style={LeftColStyle}>{meetings.room}</h4>
       {tempTimes.map((e) => {
         return <Button availabilty = {e}/>
       })}
@@ -131,16 +128,18 @@ function Room({meetings}) { // block used to make new rooms, adds a row with but
   )
 }
   
+/* This is a function that will create each individual button.
+   It will take in an individual availability for a timeslot (provided by tempTimes in the Room function).
+   It will return a completed button that will either be purple (not interactable) or blue (interactable).
+*/
 function Button({availabilty}) { {/* custom button */}
+    // Constant that will be used to flip blue buttons to gray (selected) and gray buttons to blue
     const [isActive, setIsActive] = useState(false);
-    // const [isConfirmed, setIsConfirmed] = useState(false);
-    
-    // const aciveStyle = `.activeButton`;
-    // const pendingStyle = ``;
   
     const doPurp = availabilty;
   
-    if(doPurp){ // checks is the buttons should be purple, will be modified later so not all buttons get changed
+    // Checks if timeslot for button is available. If no, make it purple. If yes, make it blue with a click handler
+    if(doPurp){
       return (
         <button style={ButtonTaken}></button>
       )
@@ -152,8 +151,9 @@ function Button({availabilty}) { {/* custom button */}
       )
     }
   }
-  
-  const Times = () => ( // exclusively holds the values that belong in the first row, ie the times that meetings can be held
+ 
+  // exclusively holds the values that belong in the first row, ie the times that meetings can be held
+  const Times = () => ( 
     <> 
       <h4 style={TimeStyle}> 7</h4>
       <h4 style={TimeStyle}> 8</h4>
@@ -169,32 +169,37 @@ function Button({availabilty}) { {/* custom button */}
     </>
   )
   
-  const TimeStyle ={ // styles for the items in the first row
+  // styles for the items in the first row
+  const TimeStyle ={ 
     width: '4rem', 
     display: 'flex', 
     alignItems: 'center', 
     justifyContent: 'center'
   }
   
-  const ButtonStyle ={ // styles for when a particular time is available
+  // styles for when a particular time is available
+  const ButtonStyle ={ 
     width: '4rem', 
     height: '4rem', 
     backgroundColor: '#1f97e5'
   }
   
-  const ButtonSelected ={ // styles for when a particular time is selected
+  // styles for when a particular time is selected
+  const ButtonSelected ={ 
     width: '4rem',
     height: '4rem',
     backgroundColor: 'gray'
   }
   
-  const ButtonTaken ={ // styles for when a particular time is taken
+  // styles for when a particular time is taken
+  const ButtonTaken ={ 
     width: '4rem',
     height: '4rem',
     backgroundColor: 'purple',
   }
   
-  const LeftColStyle ={ // styles for the left column
+  // styles for the left column
+  const LeftColStyle ={ 
     width: '10rem',
     display: 'flex', 
     alignItems: 'center',
