@@ -121,9 +121,8 @@ function Room({meetings}) { // block used to make new rooms, adds a row with but
     <>
       <h4 style={LeftColStyle}>{meetings.room}</h4>
       {tempTimes.map((e) => {
-        return <Button availabilty = {e}/>
+        return <Button availabilty = {e} meeting = {meetings}/>
       })}
-      
     </>
   )
 }
@@ -132,20 +131,20 @@ function Room({meetings}) { // block used to make new rooms, adds a row with but
    It will take in an individual availability for a timeslot (provided by tempTimes in the Room function).
    It will return a completed button that will either be purple (not interactable) or blue (interactable).
 */
-function Button({availabilty}) { {/* custom button */}
+function Button({availabilty, meetings}) { {/* custom button */}
     // Constant that will be used to flip blue buttons to gray (selected) and gray buttons to blue
     const [isActive, setIsActive] = useState(false);
   
     const doPurp = availabilty;
   
     // Checks if timeslot for button is available. If no, make it purple. If yes, make it blue with a click handler
-    if(doPurp){
+    if(doPurp == 1){
       return (
         <button style={ButtonTaken}></button>
       )
     }
   
-    else if(!doPurp){ 
+    else if(doPurp == 0){ 
       return ( // if the button is clicked, it will change from blue to grey and vice versa
         <button style={(isActive ? ButtonSelected : ButtonStyle) } onClick = {() => {setIsActive(current => !current);}}></button>
       )
@@ -174,7 +173,7 @@ function Button({availabilty}) { {/* custom button */}
     width: '4rem', 
     display: 'flex', 
     alignItems: 'center', 
-    justifyContent: 'center'
+    justifyContent: 'left'
   }
   
   // styles for when a particular time is available
