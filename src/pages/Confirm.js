@@ -1,7 +1,7 @@
 import "./pageCSS/Confirm.css";
 import {useEffect, useState} from 'react';
 import axios from "axios";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 
 export default function Confirm(){
     let location = useLocation();
@@ -40,18 +40,28 @@ export default function Confirm(){
         // If the row has new bookings (any timeslot has a value of 2) then map the timeslots to find which one has been changed
         if(tempTimes.includes(2)){
             return(
-                <>
-                <h4>You have booked {row.room} for the following times:</h4>
-                {tempTimes.map((e, idx) => {
-                    return <ExtractTime availability={e} timeslot = {idx + 7}/>
-                })}
+                // did some slight reareanging to allow for the buttons to be at the bottom and for the times to be row aligned
+                <> 
+                    <h4>You have booked {row.room} for the following times:</h4>
+                    <div style={{display:"flex", justifyContent:"center",flexDirection:"row", gap:"2rem"}}>
+                    {tempTimes.map((e, idx) => {
+                        return <ExtractTime availability={e} timeslot = {idx + 7}></ExtractTime>
+                    })}
+                    </div>
                 </>
             )
         }    
     }
 
     // Begins search for new bookings at the row (Room) level
+    // This is where the Cancel and Sumbit buttons are rendered
     return(
-        location.state.data.map((booking) => <ExtractRow row = {booking}/>)   
+        <body className="Confirm-body">    
+            {location.state.data.map((booking) => <ExtractRow row = {booking}/>)}  
+            <div className="row-align">
+                <Link to="/bookroom" className="button-style">Submit</Link>
+                <Link to="/bookroom" className="button-style">Cancel</Link>
+            </div> 
+        </body>
     )  
 }

@@ -1,12 +1,25 @@
 .Confirm-body {
-    background-color: rgb(175, 175, 175); /*background color*/
-    min-height: 90vh; /*minimun height of the body in % of the screen size*/
-    display: flex; /*unknown*/
-    flex-direction: row; /*whether the text will be aligned in columns or rows*/
-    align-items: top; /*dont know the difference between these two*/
-    justify-content: center;
-    font-size: calc(10px + 2vmin); /*font size and text size*/
-    color: black; /*text color*/
-    gap: 5rem;
-    padding: 5%;
-  }
+  background-color: rgb(175, 175, 175); /*background color*/
+  min-height: 90vh; /*minimun height of the body in % of the screen size*/
+  display: flex; /*unknown*/
+  flex-direction: column; /*whether the text will be aligned in columns or rows*/
+  align-items: top;
+  justify-content: center;
+  font-size: calc(10px + 2vmin); /*font size and text size*/
+  color: black; /*text color*/
+  padding: 5%;
+}
+
+.button-style {
+  font-size: 12pt;
+  display: flex;
+  color: black;
+  text-decoration: none;
+}
+
+.row-align {
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  gap: 2rem;
+}
