@@ -11,6 +11,7 @@ import Manage from './pages/Manage';
 import Home from './pages/Home';
 import About from './pages/About';
 import Test from './pages/Test';
+import Confirm from './pages/Confirm';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/managebookings" element={<Manage/>}/>
           <Route path="/about" element={<About/>}/>
           <Route path="/test" element={<Test/>}/>
+          <Route path="/confirm" element={<Confirm/>}/>
         </Routes>
       </div>
     </div>

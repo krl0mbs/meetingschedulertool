@@ -4,11 +4,12 @@ import Table from '../table.js';
 import {useEffect, useState} from 'react';
 import axios from "axios";
 import { Component } from 'react';
+import { Link } from "react-router-dom"
 
 export default function Book() {
   // Various arrays that will be used to store db information
-  const [room, setRoom] = useState([]);
   const [meetings, setMeetings] = useState([]);
+  const [room, setRoom] = useState([]);
   const [text, setText] = useState('');
   const tempName = [];
   const tempBookingNames = [];
@@ -103,12 +104,8 @@ export default function Book() {
         let array2 = meetings.map(a => {return {...a}})
         array2.find(a => a['room'] == name)[timeslot.toString()] = isActive ? 0 : 2;
 
-        console.log(array2.find(a => a['room'] == name));
-
         setIsActive(!isActive);
         setMeetings(array2);
-
-        console.log(isActive);
       }
 
       // Checks if timeslot for button is available. If no, make it purple. If yes, make it blue with a click handler
@@ -137,6 +134,21 @@ export default function Book() {
           })}
       </>
     )
+  }
+
+  // Attempting to make a button class that has the capability to turn selected buttons purple
+  // Will hoefully take in a set of integers and turn grays into purples (0 = blue, 1 = purple, 2 = gray)
+  class ConfirmButton extends Component{
+    state = {grays: []};
+
+    render(){
+      return(
+        <div className='right-side'>
+          {/* <button className='button-style'>Confirm</button> */}
+          <Link to="/confirm" state={{data: meetings}} className="button-style">Confirm</Link>
+        </div>
+      );
+    }
   }
 
   return (
@@ -207,27 +219,4 @@ const LeftColStyle ={
   width: '10rem',
   display: 'flex', 
   alignItems: 'center',
-}
-
-// Attempting to make a button class that has the capability to turn selected buttons purple
-// Will hoefully take in a set of integers and turn grays into purples (0 = blue, 1 = gray, 2 = purple)
-class ConfirmButton extends Component{
-  state = {grays: []};
-
-  async componentDidMount(){
-    const grays = JSON.parse(localStorage.getItem("cart"));
-    this.setState({grays});
-  }
-
-  render(){
-    return(
-      <div className='right-side'>
-        <button className='button-style'>Confirm</button>
-      </div>
-    );
-  }
-
-  setPurp() {
-
-  }
 }
