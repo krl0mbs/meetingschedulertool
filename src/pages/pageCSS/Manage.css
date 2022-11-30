@@ -1,8 +1,11 @@
 .Manage-body {
-    background-color: #555;
+    background-color: rgb(175, 175, 175);
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 90vh;
-    color: #fff;
+    color: black;
+    font-size: calc(10px + 2vmin);
+    font-weight: bold;
+    flex-direction: column;
 }

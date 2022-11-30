@@ -67,7 +67,7 @@ export default function Book() {
       }
 
       <Availability meetings = {meetings}/>
-      <ConfrimButton/>
+      {/* <ConfrimButton/> */}
     </div>
     )
 }
@@ -174,7 +174,7 @@ function Button({availabilty}) { {/* custom button */}
     width: '4rem', 
     display: 'flex', 
     alignItems: 'center', 
-    justifyContent: 'center'
+    justifyContent: 'left',
   }
   
   // styles for when a particular time is available

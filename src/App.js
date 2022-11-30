@@ -10,7 +10,6 @@ import Book from './pages/Book';
 import Manage from './pages/Manage';
 import Home from './pages/Home';
 import About from './pages/About';
-import Test from './pages/Test';
 
 function App() {
   return (
@@ -22,7 +21,6 @@ function App() {
           <Route path="/bookroom" element={<Book/>}/>
           <Route path="/managebookings" element={<Manage/>}/>
           <Route path="/about" element={<About/>}/>
-          <Route path="/test" element={<Test/>}/>
         </Routes>
       </div>
     </div>

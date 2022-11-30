@@ -9,7 +9,6 @@ export default function Navbar() {
             <CustomLinks to="/bookroom">Book Room</CustomLinks> {/*CustomLinks is a custom tag (basically a function)*/}
             <CustomLinks to="/managebookings">Manage Bookings</CustomLinks> 
             <CustomLinks to="/about">About</CustomLinks>
-            <CustomLinks to="/test">Test</CustomLinks>
         </ul>
     </nav>
     );
