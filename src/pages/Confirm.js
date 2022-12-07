@@ -4,6 +4,17 @@ import axios from "axios";
 import { useLocation, Link } from "react-router-dom";
 
 export default function Confirm(){
+    // Function for connecting to the db
+    const connectToDB = async () => {
+        const result = await axios(
+            'http://localhost:3002/api/meetings/connect',
+        )
+    };
+
+    useEffect(() => {
+        connectToDB();
+    }, []);
+
     let location = useLocation();
 
     /* Constant that will extract the row (each entry) from the object array.
@@ -53,13 +64,58 @@ export default function Confirm(){
         }    
     }
 
+    const updateData = (row) => {
+        const ExtractRowUpdate = (row) => {
+            // Breaking the row object into an array of timeslots
+            const tempTimesUpdate = [
+                row['7'], 
+                row['8'], 
+                row['9'], 
+                row['10'], 
+                row['11'], 
+                row['12'], 
+                row['13'], 
+                row['14'], 
+                row['15'], 
+                row['16'], 
+                row['17']
+            ];
+    
+            /* Constant that will extract each individual time slot from the current row (object).
+               This constant will take in the availability of each timeslot as well as the name of each timeslot
+               so that it may check if they have been modified (have a value of 2).
+               This constant will return the timeslots that have been modified.
+            */
+    
+            // If the row has new bookings (any timeslot has a value of 2) then map the timeslots to find which one has been changed
+            if(tempTimesUpdate.includes(2)){
+                // did some slight reareanging to allow for the buttons to be at the bottom and for the times to be row aligned
+                {tempTimesUpdate.forEach((e, idx) => {
+                    console.log(row.ID);
+                    if (e == 2){
+                        fetch("http://localhost:3002/api/meetings/updateMeetings", {
+                            method: 'POST',
+                            body: JSON.stringify( {
+                                "room" : row.ID,
+                                "time" : idx + 7
+                            })
+                        })
+                    }
+                })}
+            }    
+        }
+
+        location.state.data.forEach((booking) =>  ExtractRowUpdate(booking));
+    }
+
+
     // Begins search for new bookings at the row (Room) level
     // This is where the Cancel and Sumbit buttons are rendered
     return(
-        <body className="Confirm-body">    
+        <body className="Confirm-body">   
             {location.state.data.map((booking) => <ExtractRow row = {booking}/>)}  
             <div className="row-align">
-                <Link to="/bookroom" className="button-style">Submit</Link>
+                <button className="button-style" onClick={updateData()}>Submit</button>
                 <Link to="/bookroom" className="button-style">Cancel</Link>
             </div> 
         </body>

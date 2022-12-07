@@ -139,7 +139,7 @@ export default function Book() {
   // Attempting to make a button class that has the capability to turn selected buttons purple
   // Will hoefully take in a set of integers and turn grays into purples (0 = blue, 1 = purple, 2 = gray)
   class ConfirmButton extends Component{
-    state = {grays: []};
+    //state = {grays: []};
 
     render(){
       return(
