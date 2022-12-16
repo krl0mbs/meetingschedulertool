@@ -112,13 +112,13 @@ export default function Book() {
       if(doPurp == 1){
         return (
           <button style={ButtonTaken}></button>
-          )
-        }
+        )
+      }
         
       else if(doPurp != 1){ 
         // if the button is clicked, it will change from blue to grey and vice-versa
         return (
-        <button style={(isActive ? ButtonSelected : ButtonStyle) } onClick = {clickHandler}></button>
+          <button style={(isActive ? ButtonSelected : ButtonStyle) } onClick = {clickHandler}></button>
         )
       }
     }
@@ -131,7 +131,7 @@ export default function Book() {
         <h4 style={LeftColStyle}>{meeting.room}</h4>
         {tempTimes.map((e, idx) => {
           return <Button availabilty = {e} timeslot = {idx + 7} name = {meeting.room}/>
-          })}
+        })}
       </>
     )
   }

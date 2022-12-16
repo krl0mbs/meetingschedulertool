@@ -2,6 +2,7 @@ import "./pageCSS/Confirm.css";
 import {useEffect, useState} from 'react';
 import axios from "axios";
 import { useLocation, Link } from "react-router-dom";
+import React from 'react';
 
 export default function Confirm(){
     // Function for connecting to the db
@@ -16,7 +17,7 @@ export default function Confirm(){
     }, []);
 
     let location = useLocation();
-
+    
     /* Constant that will extract the row (each entry) from the object array.
        This constant will take the row itself as a parameter so that it may break the object up into its various times.
        This constant will return the rows that have new bookings.
@@ -64,7 +65,7 @@ export default function Confirm(){
         }    
     }
 
-    const updateData = (row) => {
+    const updateData = (event) => {
         const ExtractRowUpdate = (row) => {
             // Breaking the row object into an array of timeslots
             const tempTimesUpdate = [
@@ -82,9 +83,9 @@ export default function Confirm(){
             ];
     
             /* Constant that will extract each individual time slot from the current row (object).
-               This constant will take in the availability of each timeslot as well as the name of each timeslot
-               so that it may check if they have been modified (have a value of 2).
-               This constant will return the timeslots that have been modified.
+                This constant will take in the availability of each timeslot as well as the name of each timeslot
+                so that it may check if they have been modified (have a value of 2).
+                This constant will return the timeslots that have been modified.
             */
     
             // If the row has new bookings (any timeslot has a value of 2) then map the timeslots to find which one has been changed
@@ -95,6 +96,10 @@ export default function Confirm(){
                     if (e == 2){
                         fetch("http://localhost:3002/api/meetings/updateMeetings", {
                             method: 'POST',
+                            headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json',
+                            },
                             body: JSON.stringify( {
                                 "room" : row.ID,
                                 "time" : idx + 7
@@ -104,7 +109,7 @@ export default function Confirm(){
                 })}
             }    
         }
-
+    
         location.state.data.forEach((booking) =>  ExtractRowUpdate(booking));
     }
 
@@ -115,7 +120,7 @@ export default function Confirm(){
         <body className="Confirm-body">   
             {location.state.data.map((booking) => <ExtractRow row = {booking}/>)}  
             <div className="row-align">
-                <button className="button-style" onClick={updateData()}>Submit</button>
+                <Link to="/bookroom" className="button-style" onClick={updateData}>Submit</Link>
                 <Link to="/bookroom" className="button-style">Cancel</Link>
             </div> 
         </body>
