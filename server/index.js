@@ -27,18 +27,19 @@ res.send(result)
 app.post("/api/meetings/updateMeetings", (req,res)=>{
     db.query("USE meetingdb", (err,result)=>{
         if(err) {
-        console.log(err)
-        } })
+            console.log(err)
+        } 
+    })
     console.log('hello');
     const room = req.body.room;
     const time = req.body.time.toString();
     console.log(room);
     console.log(time);
     db.query(`UPDATE meetings SET \`${time}\` = 1 WHERE ID = ?`, room, (err,result)=> {
-    if(err) {
-        console.log(err)
-    } 
-    console.log(result)
+        if(err) {
+            console.log(err)
+        } 
+        console.log(result)
     })
 })
 

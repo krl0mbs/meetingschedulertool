@@ -65,7 +65,15 @@ export default function Confirm(){
         }    
     }
 
-    const updateData = (event) => {
+    /* This is where the webpage will pass its data to the database.
+       It will work very similarly to the section above (break data into rows, then attributes in the row).
+    */
+    const updateData = () => {
+        /* Constant that will extract each individual time slot from the current row (object).
+           This constant will take in the availability of each timeslot as well as the name of each timeslot
+           so that it may check if they have been modified (have a value of 2).
+           This constant will update the databse to reflect modified timeslots.
+        */
         const ExtractRowUpdate = (row) => {
             // Breaking the row object into an array of timeslots
             const tempTimesUpdate = [
@@ -82,17 +90,10 @@ export default function Confirm(){
                 row['17']
             ];
     
-            /* Constant that will extract each individual time slot from the current row (object).
-                This constant will take in the availability of each timeslot as well as the name of each timeslot
-                so that it may check if they have been modified (have a value of 2).
-                This constant will return the timeslots that have been modified.
-            */
-    
             // If the row has new bookings (any timeslot has a value of 2) then map the timeslots to find which one has been changed
             if(tempTimesUpdate.includes(2)){
                 // did some slight reareanging to allow for the buttons to be at the bottom and for the times to be row aligned
                 {tempTimesUpdate.forEach((e, idx) => {
-                    console.log(row.ID);
                     if (e == 2){
                         fetch("http://localhost:3002/api/meetings/updateMeetings", {
                             method: 'POST',
@@ -110,6 +111,7 @@ export default function Confirm(){
             }    
         }
     
+        // Begins process of breaking down object array for databse update
         location.state.data.forEach((booking) =>  ExtractRowUpdate(booking));
     }
 
