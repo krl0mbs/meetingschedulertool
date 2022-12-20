@@ -1,4 +1,4 @@
-// Book Room Page
+
 import "./pageCSS/Book.css";
 import Table from '../table.js';
 import {useEffect, useState} from 'react';
@@ -10,10 +10,7 @@ export default function Book() {
   // Various arrays that will be used to store db information
   const [meetings, setMeetings] = useState([]);
   const [room, setRoom] = useState([]);
-  const [text, setText] = useState('');
   const tempName = [];
-  const tempBookingNames = [];
-  const tempTimes = [];
 
   // Function for connecting to the db
   const connectToDB = async () => {
@@ -74,25 +71,41 @@ export default function Book() {
     // Isolates the db columns that contain availabilities for each time block and puts them in an array
     const tempTimes = [
       meeting['7'], 
+      meeting['7.5'], 
       meeting['8'], 
+      meeting['8.5'], 
       meeting['9'], 
-      meeting['10'], 
-      meeting['11'], 
-      meeting['12'], 
-      meeting['13'], 
-      meeting['14'], 
-      meeting['15'], 
-      meeting['16'], 
-      meeting['17']
+      meeting['9.5'], 
+      meeting['10'],
+      meeting['10.5'],
+      meeting['11'],
+      meeting['11.5'],
+      meeting['12'],
+      meeting['12.5'],
+      meeting['13'],
+      meeting['13.5'],
+      meeting['14'],
+      meeting['14.5'],
+      meeting['15'],
+      meeting['15.5'],
+      meeting['16'],
+      meeting['16.5'],
+      meeting['17'],
+      meeting['17.5'],
     ];
   
+    
     /* This is a function that will create each individual button.
     It will take in an individual availability for a timeslot (provided by tempTimes in the Room function).
     It will return a completed button that will either be purple (not interactable) or blue (interactable).
     */
+    
     const Button = ({availabilty, timeslot, name}) => { {/* custom button */}
       // Constant that will be used to flip blue buttons to gray (selected) and gray buttons to blue based on the availability
       const [isActive, setIsActive] = useState(availabilty == 2 ? true : false);
+
+      const indexMod = timeslot*.5;
+      timeslot += 7-indexMod;
 
       const doPurp = availabilty;
 
@@ -130,7 +143,7 @@ export default function Book() {
       <>
         <h4 style={LeftColStyle}>{meeting.room}</h4>
         {tempTimes.map((e, idx) => {
-          return <Button availabilty = {e} timeslot = {idx + 7} name = {meeting.room}/>
+          return <Button availabilty = {e} timeslot = {idx} name = {meeting.room} />
         })}
       </>
     )
@@ -190,26 +203,26 @@ const TimeStyle ={
   width: '4rem', 
   display: 'flex', 
   alignItems: 'center', 
-  justifyContent: 'left'
+  justifyContent: 'left',
 }
 
 // styles for when a particular time is available
 const ButtonStyle ={ 
-  width: '4rem', 
+  width: '2rem', 
   height: '4rem', 
-  backgroundColor: '#1f97e5'
+  backgroundColor: '#1f97e5',
 }
 
 // styles for when a particular time is selected
 const ButtonSelected ={ 
-  width: '4rem',
+  width: '2rem',
   height: '4rem',
   backgroundColor: 'gray'
 }
 
 // styles for when a particular time is taken
 const ButtonTaken ={ 
-  width: '4rem',
+  width: '2rem',
   height: '4rem',
   backgroundColor: 'purple',
 }

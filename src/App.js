@@ -1,17 +1,18 @@
 import React from 'react';
-import './App.css';
-import Navbar from "./Navbar";
-import "./Navbar.css";
 import {Route, Routes} from "react-router-dom";
-import "./pages/pageCSS/Home.css";
+
+import Navbar from "./Navbar";
 
 // Pages Imported for use when routing to new webpages
 import Book from './pages/Book';
 import Manage from './pages/Manage';
 import Home from './pages/Home';
 import About from './pages/About';
-import Test from './pages/Test';
 import Confirm from './pages/Confirm';
+
+import "./pages/pageCSS/Home.css";
+import "./Navbar.css";
+import './App.css';
 
 function App() {
   return (
@@ -23,7 +24,6 @@ function App() {
           <Route path="/bookroom" element={<Book/>}/>
           <Route path="/managebookings" element={<Manage/>}/>
           <Route path="/about" element={<About/>}/>
-          <Route path="/test" element={<Test/>}/>
           <Route path="/confirm" element={<Confirm/>}/>
         </Routes>
       </div>

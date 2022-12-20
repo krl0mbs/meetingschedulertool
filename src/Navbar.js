@@ -6,10 +6,9 @@ export default function Navbar() {
     <nav>
         <Link to="/" className="mst-home">Meeting Scheduler</Link> {/*uses the Link tag from react-router-dom*/}
         <ul>
-            <CustomLinks to="/bookroom">Book Room</CustomLinks> {/*CustomLinks is a custom tag (basically a function)*/}
+            <CustomLinks to="/bookroom">Book Room</CustomLinks>
             <CustomLinks to="/managebookings">Manage Bookings</CustomLinks> 
             <CustomLinks to="/about">About</CustomLinks>
-            <CustomLinks to="/test">Test</CustomLinks>
         </ul>
     </nav>
     );
