@@ -1,6 +1,4 @@
 import React from 'react';
-// import { StyleSheet, Text, View} from 'react-native-web';
-// import { render } from '@testing-library/react';
 
 // Creates the table object. Mouse over a property to see what it does
 const Table = (props) => (
@@ -22,7 +20,6 @@ const Table = (props) => (
       height: props.height || '4rem',
       maxWidth: props.maxWidth || 'none',
       backgroundColor: props.backgroundColor || 'none',
-      // border: props.border || '1px solid rgba(0, 0, 0, 1)'
     }}
   >
     {props.children}

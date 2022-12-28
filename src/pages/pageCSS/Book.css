@@ -1,6 +1,6 @@
 .Book-body {
     background-color: rgb(175, 175, 175); /*background color*/
-    min-height: 90vh; /*minimun height of the body in % of the screen size*/
+    min-height: 120rem; /*minimun height of the body in % of the screen size*/
     display: flex; /*unknown*/
     flex-direction: row; /*whether the text will be aligned in columns or rows*/
     align-items: top; /*dont know the difference between these two*/
@@ -9,4 +9,10 @@
     color: black; /*text color*/
     gap: 5rem;
     padding: 5%;
+  }
+
+  .button-style {
+    font-size: 12pt;
+    display: flex;
+    text-decoration: none;
   }
