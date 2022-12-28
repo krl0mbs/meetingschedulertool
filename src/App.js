@@ -1,23 +1,33 @@
-import logo from './logo.svg';
+import React from 'react';
+import {Route, Routes} from "react-router-dom";
+
+import Navbar from "./Navbar";
+
+// Pages Imported for use when routing to new webpages
+import Book from './pages/Book';
+import Manage from './pages/Manage';
+import Home from './pages/Home';
+import About from './pages/About';
+import Confirm from './pages/Confirm';
+
+import "./pages/pageCSS/Home.css";
+import "./Navbar.css";
 import './App.css';
-import Sidebar from './sidebar';  
 
 function App() {
   return (
     <div className="App">
-      {/* <Sidebar pageWrapId={'page-wrap'} outerContainerId={'outer-container'} /> */}
-      <header className="App-header"> {/*defines the header, use classname="App-header" to tell which class from App.css will be used on this tag*/}
-        <a className="Home-button" href="/">Meeting Scheduler</a>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-        <a className="Header-item" href="/bookroom">Book Room</a>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-        <a className="Header-item" href="/checkbookings">Check Bookings</a>
-        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-        <a className="Header-item" href="/managebookings">Manage Bookings</a>
-      </header>
-      <body className="App-body"></body>
+      <Navbar/>
+      <div className="Container">
+        <Routes> 
+          <Route path="/" element={<Home/>}/>
+          <Route path="/bookroom" element={<Book/>}/>
+          <Route path="/managebookings" element={<Manage/>}/>
+          <Route path="/about" element={<About/>}/>
+          <Route path="/confirm" element={<Confirm/>}/>
+        </Routes>
+      </div>
     </div>
-    
   );
 }
 
