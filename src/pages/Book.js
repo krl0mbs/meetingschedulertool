@@ -1,16 +1,19 @@
 
 import "./pageCSS/Book.css";
+import "./pageCSS/Calendar.css";
 import Table from '../table.js';
 import {useEffect, useState} from 'react';
 import axios from "axios";
 import { Component } from 'react';
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import Calendar from "react-calendar";
 
 export default function Book() {
   // Various arrays that will be used to store db information
   const [meetings, setMeetings] = useState([]);
   const [room, setRoom] = useState([]);
   const tempName = [];
+  const [date, setDate] = useState(new Date());
 
   // Function for connecting to the db
   const connectToDB = async () => {
@@ -172,14 +175,18 @@ export default function Book() {
           tempName.push(el.room)
         })
       }
-
-      {/* Create aspects of UI */}
-      <Availability meetings = {meetings}/>
-      <ConfirmButton/>
-      {console.log(meetings)}
+      <Calendar className='react-Calendar' onChange={setDate} value={date} />
+      {console.log(date.toISOString())}
+      <>  
+        {/* Create aspects of UI */}
+        <Availability meetings = {meetings}/>
+        <ConfirmButton/>
+        {console.log(meetings)}
+      </>
     </div>
     )
 }
+
 
 // exclusively holds the values that belong in the first row, ie the times that meetings can be held
 const Times = () => ( 

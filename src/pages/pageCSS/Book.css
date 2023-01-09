@@ -2,7 +2,7 @@
     background-color: rgb(175, 175, 175); /*background color*/
     min-height: 120rem; /*minimun height of the body in % of the screen size*/
     display: flex; /*unknown*/
-    flex-direction: row; /*whether the text will be aligned in columns or rows*/
+    flex-direction: column; /*whether the text will be aligned in columns or rows*/
     align-items: top; /*dont know the difference between these two*/
     justify-content: center;
     font-size: calc(10px + 2vmin); /*font size and text size*/
