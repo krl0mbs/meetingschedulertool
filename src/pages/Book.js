@@ -58,7 +58,7 @@ export default function Book() {
       {meetings.map(meeting => {
         return (
           <Table container flexDirection="row">
-            <Room meeting={meeting} />
+            <Room meeting={meeting}/>
           </Table> 
         )
       })}
@@ -176,13 +176,13 @@ export default function Book() {
         })
       }
       <Calendar className='react-Calendar' onChange={setDate} value={date} />
-      {console.log(date.toISOString())}
-      <>  
+      {console.log(date.toISOString().substring(0, 10))} {/* USE THIS TO GET THE DATE FROM THE CALENDAR */}
+      <p style={{display:"flex", flexDirection:"row", justifyContent:"center", minHeight:"120rem", gap:"5rem"}}>  
         {/* Create aspects of UI */}
         <Availability meetings = {meetings}/>
         <ConfirmButton/>
         {console.log(meetings)}
-      </>
+      </p>
     </div>
     )
 }
@@ -191,9 +191,9 @@ export default function Book() {
 // exclusively holds the values that belong in the first row, ie the times that meetings can be held
 const Times = () => ( 
   <> 
-    <h4 style={TimeStyle}> 7</h4>
-    <h4 style={TimeStyle}> 8</h4>
-    <h4 style={TimeStyle}> 9</h4>
+    <h4 style={TimeStyle}>7</h4>
+    <h4 style={TimeStyle}>8</h4>
+    <h4 style={TimeStyle}>9</h4>
     <h4 style={TimeStyle}>10</h4>
     <h4 style={TimeStyle}>11</h4>
     <h4 style={TimeStyle}>12</h4>
@@ -240,3 +240,21 @@ const LeftColStyle ={
   display: 'flex', 
   alignItems: 'center',
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*THIS IS THE MOST IMPORTANT PART OF THE CODE*/
