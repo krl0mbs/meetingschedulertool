@@ -142,7 +142,7 @@ export default function Confirm(){
         }
     
         // Begins process of breaking down object array for databse update
-        location.state.data.forEach((booking) =>  ExtractRowUpdate(booking));
+        location.state.data.meetings.forEach((booking) =>  ExtractRowUpdate(booking));
     }
 
 
@@ -150,7 +150,7 @@ export default function Confirm(){
     // This is where the Cancel and Sumbit buttons are rendered
     return(
         <body className="Confirm-body">   
-            {location.state.data.map((booking) => <ExtractRow row = {booking}/>)}  
+            {location.state.data.meetings.map((booking) => <ExtractRow row = {booking}/>)}  
             <div className="row-align">
                 <Link to="/bookroom" className="button-style" onClick={updateData}>Submit</Link>
                 <Link to="/bookroom" className="button-style">Cancel</Link>
