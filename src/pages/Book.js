@@ -29,11 +29,21 @@ export default function Book() {
     setRoom(result.data);
   };
 
+  // {console.log(date.toISOString().substring(0, 10))} {/* USE THIS TO GET THE DATE FROM THE CALENDAR */}
+
   // Function that will get the meeting data for each meeting 
   const fetchMeetings = async () => {
     const result = await axios(
-      'http://localhost:3002/api/meetings/reservations',
-    )
+      'http://localhost:3002/api/meetings/selectDay/:day', {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify( {
+          "day" : (date.toISOString().substring(0, 10))
+        })
+      })
     setMeetings(result.data);
   };
   
@@ -53,7 +63,7 @@ export default function Book() {
         })
       }
       <Calendar className='react-Calendar' onChange={setDate} value={date} />
-      {console.log(date.toISOString().substring(0, 10))} {/* USE THIS TO GET THE DATE FROM THE CALENDAR */}
+      {/* {console.log(date.toDateString().substring(0, 10))} */}
       <p style={{display:"flex", flexDirection:"row", justifyContent:"center", minHeight:"120rem", gap:"5rem"}}>  
         {/* Create aspects of UI */}
         <Availability meetings = {meetings} setMeetings = {setMeetings}/>
