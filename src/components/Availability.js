@@ -16,7 +16,7 @@ import { Room } from './Room.js';
       {meetings.map(meeting => {
         return (
           <Table container flexDirection="row">
-            <Room meeting={meeting} meetings = {meetings} setMeetings = {setMeetings}/>
+            <Room meeting={meeting} meetings = {meetings} setMeetings = {setMeetings} returnType = {1}/>
           </Table> 
         )
       })}

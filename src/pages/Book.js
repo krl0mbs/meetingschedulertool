@@ -63,31 +63,3 @@ export default function Book() {
     </div>
     )
 }
-
-// styles for when a particular time is available
-const ButtonStyle ={ 
-  width: '2rem', 
-  height: '4rem', 
-  backgroundColor: '#1f97e5',
-}
-
-// styles for when a particular time is selected
-const ButtonSelected ={ 
-  width: '2rem',
-  height: '4rem',
-  backgroundColor: 'gray'
-}
-
-// styles for when a particular time is taken
-const ButtonTaken ={ 
-  width: '2rem',
-  height: '4rem',
-  backgroundColor: 'purple',
-}
-
-// styles for the left column
-const LeftColStyle ={ 
-  width: '10rem',
-  display: 'flex', 
-  alignItems: 'center',
-}
