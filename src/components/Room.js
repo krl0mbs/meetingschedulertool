@@ -72,32 +72,7 @@ export const Room = ({meeting, meetings, setMeetings, returnType})  => { // bloc
         </>
       )
     }    
-  } else if (returnType == 3){
-    console.log("Row ID: " + meeting.ID);
-    // If the row has new bookings (any timeslot has a value of 2) then map the timeslots to find which one has been changed
-    if(tempTimes.includes(2)){
-      // did some slight reareanging to allow for the buttons to be at the bottom and for the times to be row aligned
-      {tempTimes.forEach((e, idx) => {
-        if (e == 2){
-          
-          const idxMod = idx*.5;
-          idx += 7-idxMod;
-          
-          fetch("http://localhost:3002/api/meetings/updateMeetings", {
-              method: 'POST',
-              headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-              },
-              body: JSON.stringify( {
-                "room" : meeting.ID,
-                "time" : idx
-              })
-          })
-        }
-      })}
-    }
-  }
+  } 
 }
   
 // styles for the left column

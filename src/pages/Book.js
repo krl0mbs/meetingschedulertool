@@ -13,6 +13,7 @@ export default function Book() {
   const [room, setRoom] = useState([]);
   const tempName = [];
   const [date, setDate] = useState(new Date());
+  const [reload, setReload] = useState();
 
   // Function for connecting to the db
   const connectToDB = async () => {
@@ -31,10 +32,11 @@ export default function Book() {
 
   // Function that will get the meeting data for each meeting 
   const fetchMeetings = async () => {
-    const result = await axios(
-      'http://localhost:3002/api/meetings/reservations',
-    )
-    setMeetings(result.data);
+    var dateData = date.toISOString().substring(0, 10) 
+    await axios(
+      `http://localhost:3002/api/meetings/selectDay?day=${dateData}`,
+    ).then(response => {setMeetings(response.data)})
+    
   };
   
   // Connect to the db and perform fetches that will get unique room names as well as information pertaining to each booking
@@ -42,7 +44,7 @@ export default function Book() {
     connectToDB();
     fetchRoom();
     fetchMeetings();
-  }, []);
+  }, [date]);
 
   return (
     <div className="Book-body">
@@ -52,8 +54,8 @@ export default function Book() {
           tempName.push(el.room)
         })
       }
-      <Calendar className='react-Calendar' onChange={setDate} value={date} />
-      {console.log(date.toISOString().substring(0, 10))} {/* USE THIS TO GET THE DATE FROM THE CALENDAR */}
+      <Calendar className='react-Calendar' onChange={setDate} value={date}/>
+      {console.log(date.toISOString().substring(0, 10))} 
       <p style={{display:"flex", flexDirection:"row", justifyContent:"center", minHeight:"120rem", gap:"5rem"}}>  
         {/* Create aspects of UI */}
         <Availability meetings = {meetings} setMeetings = {setMeetings}/>

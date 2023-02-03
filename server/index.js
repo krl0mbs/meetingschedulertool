@@ -43,19 +43,20 @@ app.post("/api/meetings/updateMeetings", (req,res)=>{
     })
 })
 
-app.get("/api/meetings/selectDay/:day", (req,res)=>{
+app.get("/api/meetings/selectDay", (req,res)=>{
     db.query("USE meetingdb", (err,result)=>{
         if(err) {
             console.log(err)
         } 
     })
-    const date = req.params.day;
+    const date = req.query.day;
     console.log(date);
     db.query(`SELECT * FROM meetings WHERE date = ?`, date, (err,result)=> {
         if(err) {
             console.log(err)
         } 
         console.log(result)
+        res.send(result)
     })
 })
 

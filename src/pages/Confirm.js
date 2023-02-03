@@ -82,7 +82,6 @@ export default function Confirm(){
     
         // Begins process of breaking down object array for databse update
         location.state.data.meetings.forEach((booking) =>  ExtractRowUpdate(booking));
-        //location.state.data.meetings.forEach((booking) =>  <Room meeting = {booking} meetings = {booking} returnType = {3}/>);
     }
 
 
