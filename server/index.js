@@ -93,6 +93,111 @@ db.query("INSERT INTO meetings (name) VALUES (?)",[name], (err,result)=> {
     })
 })
 
+app.get("/api/meetings/allInfo", (req,res)=>{
+    db.query("SELECT * FROM roominfo", (err,result)=>{
+        if(err) {
+            console.log(err)
+        } 
+        res.send(result)
+    })
+})
+
+app.get("/api/meetings/allIds", (req,res)=>{
+    db.query("SELECT id, room_num FROM roominfo", (err,result)=>{
+        if(err) {
+            console.log(err)
+        } 
+        res.send(result)
+    })
+})
+
+app.get("/api/meetings/singleInfo", (req,res)=>{
+    const id = req.query.id;
+    console.log(id);
+    db.query(`SELECT * FROM roominfo WHERE id = ?`, id, (err,result)=> {
+        if(err) {
+            console.log(err)
+        } 
+        console.log(result)
+        res.send(result)
+    })
+})
+
+app.get("/api/meetings/filterCapacity", (req,res)=>{
+    const min = req.query.min;
+    console.log(min);
+    db.query(`SELECT room_num FROM roominfo WHERE capacity >= ?`, min, (err,result)=> {
+        if(err) {
+            console.log(err)
+        } 
+        console.log(result)
+        res.send(result)
+    })
+})
+
+app.get("/api/meetings/filterDisplay", (req,res)=>{
+    db.query(`SELECT room_num FROM roominfo WHERE display = 1`, (err,result)=> {
+        if(err) {
+            console.log(err)
+        } 
+        res.send(result)
+    })
+})
+
+app.get("/api/meetings/filterNetworkA", (req,res)=>{
+    db.query(`SELECT room_num FROM roominfo WHERE networkA = 1`, (err,result)=> {
+        if(err) {
+            console.log(err)
+        } 
+        res.send(result)
+    })
+})
+
+app.get("/api/meetings/filterNetworkB", (req,res)=>{
+    db.query(`SELECT room_num FROM roominfo WHERE networkB = 1`, (err,result)=> {
+        if(err) {
+            console.log(err)
+        } 
+        res.send(result)
+    })
+})
+
+app.get("/api/meetings/filterVidtelecon", (req,res)=>{
+    db.query(`SELECT room_num FROM roominfo WHERE vidtelecon = 1`, (err,result)=> {
+        if(err) {
+            console.log(err)
+        } 
+        res.send(result)
+    })
+})
+
+app.get("/api/meetings/filterBuilding1", (req,res)=>{
+    db.query(`SELECT room_num FROM roominfo WHERE building1 = 1`, (err,result)=> {
+        if(err) {
+            console.log(err)
+        } 
+        res.send(result)
+    })
+})
+
+app.get("/api/meetings/filterBuidling2", (req,res)=>{
+    db.query(`SELECT room_num FROM roominfo WHERE building2 = 1`, (err,result)=> {
+        if(err) {
+            console.log(err)
+        } 
+        res.send(result)
+    })
+})
+
+app.get("/api/meetings/filterBuilding3", (req,res)=>{
+    db.query(`SELECT room_num FROM roominfo WHERE building3 = 1`, (err,result)=> {
+        if(err) {
+            console.log(err)
+        } 
+        res.send(result)
+    })
+})
+
 app.listen(PORT);
 // // Route to get one post
 // app.get("/api/getFromId/:id", (req,res)=>{
