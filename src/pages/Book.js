@@ -13,6 +13,7 @@ export default function Book() {
   const [room, setRoom] = useState([]);
   const tempName = [];
   const [date, setDate] = useState(new Date());
+  const [reload, setReload] = useState();
 
   // Function for connecting to the db
   const connectToDB = async () => {
@@ -34,16 +35,8 @@ export default function Book() {
   // Function that will get the meeting data for each meeting 
   const fetchMeetings = async () => {
     const result = await axios(
-      'http://localhost:3002/api/meetings/selectDay/:day', {
-        method: 'GET',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify( {
-          "day" : (date.toISOString().substring(0, 10))
-        })
-      })
+      'http://localhost:3002/api/meetings/reservations',
+    )
     setMeetings(result.data);
   };
   
@@ -52,7 +45,7 @@ export default function Book() {
     connectToDB();
     fetchRoom();
     fetchMeetings();
-  }, []);
+  }, [date]);
 
   return (
     <div className="Book-body">
@@ -63,7 +56,7 @@ export default function Book() {
         })
       }
       <Calendar className='react-Calendar' onChange={setDate} value={date} />
-      {/* {console.log(date.toDateString().substring(0, 10))} */}
+      {console.log(date.toISOString().substring(0, 10))} {/* USE THIS TO GET THE DATE FROM THE CALENDAR */}
       <p style={{display:"flex", flexDirection:"row", justifyContent:"center", minHeight:"120rem", gap:"5rem"}}>  
         {/* Create aspects of UI */}
         <Availability meetings = {meetings} setMeetings = {setMeetings}/>
