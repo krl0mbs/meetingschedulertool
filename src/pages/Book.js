@@ -30,15 +30,14 @@ export default function Book() {
     setRoom(result.data);
   };
 
-  // {console.log(date.toISOString().substring(0, 10))} {/* USE THIS TO GET THE DATE FROM THE CALENDAR */}
-
   // Function that will get the meeting data for each meeting 
   const fetchMeetings = async () => {
-    const result = await axios(
-      'http://localhost:3002/api/meetings/reservations',
-    )
-    setMeetings(result.data);
-  };
+    var dateData = date.toISOString().substring(0, 10) 
+    await axios(
+      `http://localhost:3002/api/meetings/selectDay?day=${dateData}`,
+    ).then(response => {setMeetings(response.data)})
+    
+    };
   
   // Connect to the db and perform fetches that will get unique room names as well as information pertaining to each booking
   useEffect(() => {
