@@ -1,6 +1,7 @@
 
 import "./pageCSS/Book.css";
 import "./pageCSS/Calendar.css";
+import { CheckFilter } from "../components/CheckFilter";
 import { ConfirmButton } from "../components/ConfirmButton";
 import { Availability } from "../components/Availability";
 import {useEffect, useState} from 'react';
@@ -54,7 +55,10 @@ export default function Book() {
           tempName.push(el.room)
         })
       }
-      <Calendar className='react-Calendar' onChange={setDate} value={date} />
+      <p style={{display:"flex", flexDirection:"row", gap:"2rem", justifyContent:"center"}}>
+        <Calendar className='react-Calendar' onChange={setDate} value={date} />
+        <CheckFilter/>
+      </p>
       <p style={{display:"flex", flexDirection:"row", justifyContent:"center", minHeight:"120rem", gap:"5rem"}}>  
         {/* Create aspects of UI */}
         <Availability meetings = {meetings} setMeetings = {setMeetings}/>

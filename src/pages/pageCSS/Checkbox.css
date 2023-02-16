@@ -1,0 +1,25 @@
+.checkbox-wrapper input[type="checkbox"] {
+    width: 1.2em;
+    height: 1.2em;
+    margin-right: 0.5em;
+    outline: none;
+    cursor: pointer;
+    background: white;
+    display: flex;
+    justify-content: left;
+}
+
+.checkbox-label {
+    display: flex;
+    font-size: 12pt;
+}
+
+.filter-box {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    background-color:#e0e0e0; 
+    padding: 1rem; 
+    border-radius: 8px; 
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
