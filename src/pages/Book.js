@@ -55,7 +55,6 @@ export default function Book() {
         })
       }
       <Calendar className='react-Calendar' onChange={setDate} value={date} />
-      {console.log(date.toISOString().substring(0, 10))} {/* USE THIS TO GET THE DATE FROM THE CALENDAR */}
       <p style={{display:"flex", flexDirection:"row", justifyContent:"center", minHeight:"120rem", gap:"5rem"}}>  
         {/* Create aspects of UI */}
         <Availability meetings = {meetings} setMeetings = {setMeetings}/>
