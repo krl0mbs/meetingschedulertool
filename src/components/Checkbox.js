@@ -3,16 +3,6 @@ import { useState } from "react";
 
 export const Checkbox = ({ label, checkHandler, selected, subOptions, values}) => {
   return (
-    // {if (selected){
-      
-    // }}
-
-    // <div className="checkbox-wrapper">
-    //   <label className="checkbox-label">
-    //     <input type="checkbox" onChange = {checkHandler} />
-    //     <span>{label}</span>
-    //   </label>
-    // </div>
       <div className="checkbox-wrapper">
         <label className="checkbox-label">
           <input type="checkbox" onChange = {checkHandler} />
@@ -23,8 +13,8 @@ export const Checkbox = ({ label, checkHandler, selected, subOptions, values}) =
          <div> 
             {/* {map through suboptions } */}
             {subOptions.map(({values}, i) => (
-              <div className="checkbox-wrapper">
-                <label className="checkbox-label">
+              <div className="subBox-wrapper">
+                <label className="subBox-label">
                   <input type="checkbox" onChange = {checkHandler} />
                   <span>{subOptions[i]}</span>
                 </label>
