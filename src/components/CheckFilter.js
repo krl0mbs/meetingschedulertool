@@ -5,11 +5,11 @@ import { useState, useEffect } from "react";
 
 export const CheckFilter = () => {
     const [filters, setFilters] = useState([
-        { filterItem: "Display", selected: false },
-        { filterItem: "Network", selected: false },
-        { filterItem: "Video/Telecom", selected: false },
-        { filterItem: "Capacity", selected: false },
-        { filterItem: "Bulding", selected: false },
+        { filterItem: "Display", selected: false, subOptions: [] },
+        { filterItem: "Network", selected: false, subOptions: []},
+        { filterItem: "Video/Telecom", selected: false, subOptions: [] },
+        { filterItem: "Capacity", selected: false, subOptions: [] },
+        { filterItem: "Building", selected: false, subOptions: ["Building 1", ], values: new Array(3).fill(false) },
     ]);
 
     const checkHandler = (selected, i) => {
@@ -28,16 +28,16 @@ export const CheckFilter = () => {
 
     return(
         <div className="filter-box">
-            {console.log(filters)}
             <h4 style={{margin:"0", gap:"0", border:"0", display:"flex", justifyContent:"center", color:"#6f48eb",fontWeight:"normal"}}>Filter</h4>
-            {filters.map(({ filterItem, selected }, i) => (
+            {filters.map(({ filterItem, selected, subOptions }, i) => (
                 <div key={i}>
                     <label htmlFor={i}>
                         <Checkbox
-                            onChange={() => checkHandler(selected, i)}
+                            checkHandler={() => checkHandler(selected, i)}
                             label={filterItem}
+                            selected = {selected}
+                            subOptions = {subOptions}
                         />
-                        {console.log(filters)}
                     </label>
                 </div>
             ))}
