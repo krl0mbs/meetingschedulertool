@@ -1,12 +1,11 @@
-
 import "./pageCSS/Book.css";
 import "./pageCSS/Calendar.css";
 import { CheckFilter } from "../components/CheckFilter";
 import { ConfirmButton } from "../components/ConfirmButton";
 import { Availability } from "../components/Availability";
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import axios from "axios";
-import Calendar from "react-calendar";
+import { Calendar } from "react-calendar";
 
 export default function Book() {
   // Various arrays that will be used to store db information
@@ -48,23 +47,26 @@ export default function Book() {
   }, [date]);
 
   return (
-    <div className="Book-body">
-      {/* Map the name data gathered from the db to a temporary array that gets passed to the Availability tag */}
-      {
-        room.map((el) => {
-          tempName.push(el.room)
-        })
-      }
-      <p style={{display:"flex", flexDirection:"row", gap:"2rem", justifyContent:"center"}}>
-        <Calendar className='react-Calendar' onChange={setDate} value={date} />
+    <div style={{display:"flex", flexDirection:"row"}}>
+      <p className="sidebar">
+        <Calendar className='react-Calendar' calendarType="US" onChange={setDate} value={date} />
         <CheckFilter/>
       </p>
-      <p style={{display:"flex", flexDirection:"row", justifyContent:"center", minHeight:"120rem", gap:"5rem"}}>  
-        {/* Create aspects of UI */}
-        <Availability meetings = {meetings} setMeetings = {setMeetings}/>
-        <ConfirmButton meetings = {meetings}/>
-        {console.log(meetings)}
-      </p>
+      <div className="Book-body">
+        {/* Map the name data gathered from the db to a temporary array that gets passed to the Availability tag */}
+        {
+          room.map((el) => {
+            tempName.push(el.room)
+          })
+        }
+        <p style={{display:"flex", flexDirection:"column", justifyContent:"top", minHeight:"120rem", gap:"1.5rem"}}>  
+          {/* Create aspects of UI */}
+          <ConfirmButton meetings = {meetings}/>
+          <Availability meetings = {meetings} setMeetings = {setMeetings}/>
+          
+          {console.log(meetings)}
+        </p>
+      </div>
     </div>
     )
 }

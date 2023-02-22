@@ -32,7 +32,7 @@ export const CheckFilter = () => {
 
     return(
         <div className="filter-box">
-            <h4 style={{margin:"0", gap:"0", border:"0", display:"flex", justifyContent:"center", color:"#6f48eb", fontWeight:"normal"}}>Filter</h4>
+            <h4 style={{margin:"0", gap:"0", border:"0", display:"flex", justifyContent:"center", color:"#6f48eb", fontWeight:"normal", fontSize:"24px"}}>Filters</h4>
             {filters.map(({ filterItem, selected, subOptions, values }, i) => (
                 <div key={i}>
                     <label htmlFor={i}>
