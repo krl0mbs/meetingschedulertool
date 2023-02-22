@@ -1,5 +1,3 @@
-/*display: flex allows the alignment, padding, etc to be manipulated*/
-
 * { /*defines general settings for all display boxes*/
     box-sizing: border-box; /*defines how the box's witdth and height will be calculated*/
 }
