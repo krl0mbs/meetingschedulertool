@@ -21,9 +21,18 @@ export const CheckFilter = () => {
         console.log(filters);
     };
 
+    const subBoxHandler = (values, i) => {
+        let tmp = filters[i];
+        tmp.values[i] = !values[i];
+        let filtersClone = [...filters];
+        filtersClone[i] = tmp;
+        setFilters([...filtersClone]);
+        console.log(filters);
+    };
+
     return(
         <div className="filter-box">
-            <h4 style={{margin:"0", gap:"0", border:"0", display:"flex", justifyContent:"center", color:"#6f48eb",fontWeight:"normal"}}>Filter</h4>
+            <h4 style={{margin:"0", gap:"0", border:"0", display:"flex", justifyContent:"center", color:"#6f48eb", fontWeight:"normal"}}>Filter</h4>
             {filters.map(({ filterItem, selected, subOptions, values }, i) => (
                 <div key={i}>
                     <label htmlFor={i}>
@@ -33,6 +42,7 @@ export const CheckFilter = () => {
                             selected = {selected}
                             subOptions = {subOptions}
                             values = {values}
+                            subBoxHandler = {() => subBoxHandler(values, i)}
                         />
                     </label>
                 </div>
