@@ -77,7 +77,7 @@ export const Room = ({meeting, meetings, setMeetings, returnType})  => { // bloc
   
 // styles for the left column
 const LeftColStyle ={ 
-  width: '10rem',
+  width: '8rem',
   display: 'flex', 
   alignItems: 'center',
 }

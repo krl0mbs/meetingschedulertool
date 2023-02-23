@@ -13,14 +13,13 @@
   color: #6f48eb;
   min-width: 20px;
   background: none;
-  margin-left: .25rem;
-  margin-right: .25rem;
+  margin-left: .15rem;
+  margin-right: .15rem;
   font-size: 16px;
   margin-top: 8px;
   margin-bottom: 8px;
   border: 0;
   border-radius: 100px;
-  font-size: 12pt;
 }
 
 .react-calendar__navigation button:enabled:hover,
