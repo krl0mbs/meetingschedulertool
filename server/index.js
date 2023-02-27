@@ -198,6 +198,15 @@ app.get("/api/meetings/filterBuilding3", (req,res)=>{
     })
 })
 
+app.get("/api/meetings/filterConnectivity", (req,res)=>{
+    db.query(`SELECT room_num FROM roominfo WHERE connectivity = 1`, (err,result)=> {
+        if(err) {
+            console.log(err)
+        } 
+        res.send(result)
+    })
+})
+
 app.listen(PORT);
 // // Route to get one post
 // app.get("/api/getFromId/:id", (req,res)=>{
