@@ -37,7 +37,7 @@ export default function Book() {
       `http://localhost:3002/api/meetings/selectDay?day=${dateData}`,
     ).then(response => {setMeetings(response.data)})
     
-    };
+  };
   
   // Connect to the db and perform fetches that will get unique room names as well as information pertaining to each booking
   useEffect(() => {
