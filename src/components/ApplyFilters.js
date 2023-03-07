@@ -55,7 +55,65 @@ export const ApplyFilters = (filters) => {
     };
 
     const applyFilters = () => {
-        filterBuilding(0);
+        /* This section is for finding the first selected filter and applying it to the database.
+           Once the first check box is found, the corresponding section will execute.
+           If the first checbox found has sub-options, the first of those will be selected and
+           the corresponding function will be called with the respective value for that sub-option
+        */
+        for(var i = 0; i < filters.filters.length; i++){
+            // Finds first selected checkbox
+            if(filters.filters[i].selected){
+               // Selects proper section of code, depending on which checkbox was found
+               switch(filters.filters[i].filterItem){
+                    case "Display":
+                        filterDisplay();
+                        break;
+                    case "Network":
+                        // Loops through sub-options to find which one was selected
+                        for(var j = 0; j < filters.filters[i].values.length; j++){
+                            if(filters.filters[i].values[j]){
+                                filterNetwork(j);
+                                break;
+                            }
+                        }
+                        break;
+                    case "Video/Telecom":
+                        filterVidTel();
+                        break;
+                    case "Capacity":
+                        // Loops through sub-options to find which one was selected
+                        for(var j = 0; j < filters.filters[i].values.length; j++){
+                            if(filters.filters[i].values[j]){
+                                filterCapacity(filters.filters[i].subOptions[j]);
+                                break;
+                            }
+                        }
+                        break;
+                    case "Building":
+                        // Loops through sub-options to find which one was selected
+                        for(var j = 0; j < filters.filters[i].values.length; j++){
+                            if(filters.filters[i].values[j]){
+                                filterBuilding(j);
+                                break;
+                            }
+                        }
+                        break;
+                    case "Connectivity":
+                        // Loops through sub-options to find which one was selected
+                        for(var j = 0; j < filters.filters[i].values.length; j++){
+                            if(filters.filters[i].values[j]){
+                                filterConnectivity(j);
+                                break;
+                            }
+                        }
+                        break;
+                    default:
+                        break;
+               }
+               break;
+            }
+        }
+
         console.log(filteredRooms);
     }
     
