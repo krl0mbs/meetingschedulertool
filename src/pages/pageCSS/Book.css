@@ -27,10 +27,27 @@
   display: flex;
   position: fixed;
   flex-direction:column;
-  height: 100rem;
+  height: 90%;
   background: #e0e0e0;
   justify-content: top;
   padding: 0px;
   gap: 0px;
   margin: 0;
+  overflow-y: scroll;
+}
+
+.keyBoxes {
+  display: flex;
+  flex-direction: row;
+  width: 1rem;
+  height: 1rem;
+  border: .07rem solid;
+  border-radius: .2rem;
+  align-self: center;
+}
+
+.keyName {
+  display:"flex";
+  flex-direction:"row";
+  padding-left: .5rem;
 }

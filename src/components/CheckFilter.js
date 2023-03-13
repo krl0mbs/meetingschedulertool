@@ -46,7 +46,7 @@ export const CheckFilter = ({setFiltered}) => {
     };
 
     return(
-        <div className="filter-box">
+        <div>
             <h4 style={{margin:"0", gap:"0", border:"0", display:"flex", justifyContent:"center", color:"#6f48eb", fontWeight:"normal", fontSize:"24px"}}>Filters</h4>
             {/* Maps the filters array in order to create the checkboxes that represent filter options */}
             {filters.map(({ filterItem, selected, subOptions, values }, i) => (

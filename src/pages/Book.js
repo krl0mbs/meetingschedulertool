@@ -49,10 +49,28 @@ export default function Book() {
 
   return (
     <div style={{display:"flex", flexDirection:"row"}}>
-      <p className="sidebar">
+      <div className="sidebar">
+        <p style={{display:"flex", flexDirection:"column", alignItems:"left", gap:"3px", padding:"10px",  margin:"0"}}>
+
+          <h style={{display:"flex", flexDirection:"row"}}>
+            <button className="keyBoxes" style={{backgroundColor:"#1f97e5"}}></button>
+            <div className="keyName">Open</div>
+          </h>
+
+          <h style={{display:"flex", flexDirection:"row"}}>
+            <button className="keyBoxes" style={{backgroundColor:"purple"}}></button>
+            <div className="keyName">Booked</div>
+          </h>
+
+          <h style={{display:"flex", flexDirection:"row"}}>
+            <button className="keyBoxes" style={{backgroundColor:"gray"}}></button>
+            <div className="keyName">Selected</div>
+          </h>
+
+        </p>
         <Calendar className='react-Calendar' calendarType="US" onChange={setDate} value={date} />
         <CheckFilter setFiltered = {setFiltered}/>
-      </p>
+      </div>
       <div className="Book-body">
         {/* Map the name data gathered from the db to a temporary array that gets passed to the Availability tag */}
         {
@@ -60,8 +78,7 @@ export default function Book() {
             tempName.push(el.room)
           })
         }
-        <p style={{display:"flex", flexDirection:"column", justifyContent:"top", minHeight:"120rem", gap:"1.5rem"}}>  
-          {/* Create aspects of UI */}
+        <p style={{display:"flex", flexDirection:"column", justifyContent:"top", minHeight:"120rem", gap:"1.5rem", paddingLeft:"1rem"}}>  
           <ConfirmButton meetings = {meetings}/>
           <Availability meetings = {meetings} setMeetings = {setMeetings}/>
           
