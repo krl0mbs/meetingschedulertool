@@ -2,7 +2,7 @@ import { Checkbox } from "./Checkbox";
 import { ApplyFilters } from "./ApplyFilters";
 import { useState, useEffect } from "react";
 
-export const CheckFilter = () => {
+export const CheckFilter = ({setFiltered}) => {
     /* This is an object array that will hold all of the checkboxes in the "Filters" section.
        The "filterItem" prop is the name of the checkbox,
     */
@@ -64,7 +64,7 @@ export const CheckFilter = () => {
                     </label>
                 </div>
             ))}
-            <ApplyFilters filters = {filters}/>
+            <ApplyFilters filters = {filters} setFilteredRooms = {setFiltered}/>
         </div>
     )
 }

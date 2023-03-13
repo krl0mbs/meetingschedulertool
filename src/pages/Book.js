@@ -13,7 +13,8 @@ export default function Book() {
   const [room, setRoom] = useState([]);
   const tempName = [];
   const [date, setDate] = useState(new Date());
-  const [reload, setReload] = useState();
+  const [filtered, setFiltered] = useState([]);
+  // const [reload, setReload] = useState();
 
   // Function for connecting to the db
   const connectToDB = async () => {
@@ -50,7 +51,7 @@ export default function Book() {
     <div style={{display:"flex", flexDirection:"row"}}>
       <p className="sidebar">
         <Calendar className='react-Calendar' calendarType="US" onChange={setDate} value={date} />
-        <CheckFilter/>
+        <CheckFilter setFiltered = {setFiltered}/>
       </p>
       <div className="Book-body">
         {/* Map the name data gathered from the db to a temporary array that gets passed to the Availability tag */}
@@ -64,7 +65,7 @@ export default function Book() {
           <ConfirmButton meetings = {meetings}/>
           <Availability meetings = {meetings} setMeetings = {setMeetings}/>
           
-          {console.log(meetings)}
+          {console.log(filtered)}
         </p>
       </div>
     </div>
