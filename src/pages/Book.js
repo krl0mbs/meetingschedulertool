@@ -47,6 +47,17 @@ export default function Book() {
     fetchMeetings();
   }, [date]);
 
+  // Uncomment this function when comparison logic is ready to be implemented
+  useEffect(() => {
+    const result = meetings.filter(meeting => {
+      let tmp = filtered.filter(item => item.room === meeting.room)
+      return !(tmp.length === 0)
+    })
+    var bool = meetings.some(item => item.room === "Room A");
+    setMeetings(result);
+    console.log(meetings);
+  }, [filtered]);
+
   return (
     <div style={{display:"flex", flexDirection:"row"}}>
       <div className="sidebar">
@@ -82,7 +93,7 @@ export default function Book() {
           <ConfirmButton meetings = {meetings}/>
           <Availability meetings = {meetings} setMeetings = {setMeetings}/>
           
-          {console.log(filtered)}
+          {console.log(meetings)}
         </p>
       </div>
     </div>
