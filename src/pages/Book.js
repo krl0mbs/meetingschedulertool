@@ -3,6 +3,7 @@ import "./pageCSS/Calendar.css";
 import { CheckFilter } from "../components/CheckFilter";
 import { ConfirmButton } from "../components/ConfirmButton";
 import { Availability } from "../components/Availability";
+import { TableKey } from "../components/TableKey";
 import { useEffect, useState } from 'react';
 import axios from "axios";
 import { Calendar } from "react-calendar";
@@ -49,36 +50,21 @@ export default function Book() {
 
   // Uncomment this function when comparison logic is ready to be implemented
   useEffect(() => {
-    const result = meetings.filter(meeting => {
-      let tmp = filtered.filter(item => item.room === meeting.room)
-      return !(tmp.length === 0)
-    })
-    var bool = meetings.some(item => item.room === "Room A");
-    setMeetings(result);
-    console.log(meetings);
+    if(filtered.length != 0){
+      const result = meetings.filter(meeting => {
+        let tmp = filtered.filter(item => item.room === meeting.room)
+        return !(tmp.length === 0)
+      })
+      var bool = meetings.some(item => item.room === "Room A");
+      setMeetings(result);
+      console.log(meetings);
+    }
   }, [filtered]);
-
+  
   return (
     <div style={{display:"flex", flexDirection:"row"}}>
       <div className="sidebar">
-        <p style={{display:"flex", flexDirection:"column", alignItems:"left", gap:"3px", padding:"10px",  margin:"0"}}>
-
-          <h style={{display:"flex", flexDirection:"row"}}>
-            <button className="keyBoxes" style={{backgroundColor:"#1f97e5"}}></button>
-            <div className="keyName">Open</div>
-          </h>
-
-          <h style={{display:"flex", flexDirection:"row"}}>
-            <button className="keyBoxes" style={{backgroundColor:"purple"}}></button>
-            <div className="keyName">Booked</div>
-          </h>
-
-          <h style={{display:"flex", flexDirection:"row"}}>
-            <button className="keyBoxes" style={{backgroundColor:"gray"}}></button>
-            <div className="keyName">Selected</div>
-          </h>
-
-        </p>
+        <TableKey />
         <Calendar className='react-Calendar' calendarType="US" onChange={setDate} value={date} />
         <CheckFilter setFiltered = {setFiltered}/>
       </div>
