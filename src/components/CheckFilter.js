@@ -27,7 +27,6 @@ export const CheckFilter = ({setFiltered}) => {
         let filtersClone = [...filters];
         filtersClone[i] = tmp;
         setFilters([...filtersClone]);
-        console.log(filters);
     };
 
     /* This is a function that sets the status of a sub-checkbox and will be called each time it is clicked.
@@ -42,7 +41,6 @@ export const CheckFilter = ({setFiltered}) => {
         let filtersClone = [...filters];
         filtersClone[FilterIndex] = tmp;
         setFilters([...filtersClone]);
-        console.log(filters);
     };
 
     return(

@@ -2,8 +2,15 @@ import { useEffect, useState } from 'react';
 import axios from "axios";
 
 export const ApplyFilters = ({filters, setFilteredRooms}) => {
+    /* tmpRooms is made to be a list that represents all of the rooms that match the currently
+       applied filters (gets updated iteratively). DBRooms is used to hold the results of a
+       database query. Holds the result of the query and cross references it with tmpRooms to
+       find the overlap (rooms that match both filters). firstFilter is a simple boolean to track
+       if the current filter being applied is the first one.
+    */
     const [tmpRooms, setTmpRooms] = useState([]);
     const [DBRooms, setDBRooms] = useState([]);
+    var firstFilter = true;
 
     // Function for connecting to the db
     const connectToDB = async () => {
@@ -13,8 +20,7 @@ export const ApplyFilters = ({filters, setFilteredRooms}) => {
     };
 
     // Function for filtering rooms from db based on capacity
-    const filterCapacity = async (capacity) => {
-        var dateData = '12'; 
+    const filterCapacity = async (capacity) => { 
         await axios(
             `http://localhost:3002/api/meetings/filterCapacity?min=${capacity}`,
         ).then(response => {setFilteredRooms(response.data); setDBRooms(response.data)})
@@ -55,83 +61,112 @@ export const ApplyFilters = ({filters, setFilteredRooms}) => {
         ).then(response => {setFilteredRooms(response.data); setDBRooms(response.data)})
     };
 
+    /* This function will be used to strip away unwanted rooms from tmpRooms by
+       cross referencing it with the result of the current database query. The overlap
+       between the two will represent the list of rooms that match ALL selected filters.
+    */
     const thinHerd = () => {
-        if(tmpRooms.length == 0){
+        /* If the current filter is the first to be applied, tmpRooms should just
+           be the same as the result of the database query. Finding the overlap would
+           be bad since tmpRooms is empty (there is no overlap). If the current filter
+           is not the first one to be applied, the overlap will be found and tmpRooms
+           will be updated.
+        */
+        if(firstFilter){
             setTmpRooms(DBRooms);
         } else{
+            // Uses the filter function on the two arrays to find their overlap
             const result = tmpRooms.filter(currentRoom => {
                 let tmp = DBRooms.filter(item => item.room === currentRoom.room)
                 return !(tmp.length === 0)
-            })
-
+            });
+            
+            // Updated tmpRooms to have the overlap
             setTmpRooms(result);
-            setFilteredRooms(tmpRooms);
         }
     }
 
-    const applyFilters = () => {
+    // Will update the list of rooms that matches the filters on the Book page when tmpRooms is changed
+    useEffect(() => {
+        setFilteredRooms(tmpRooms);
+    }, [tmpRooms]);
+    
+    /* This is the click handler for the "Apply" button; it will apply the user selected filters.
+       The function has been made asynchronous so that "await" can be used on each database query.
+       This is to prevent the function from continuing onward while data is still being collected
+       from the database. Without this DBRooms won't get updated as often as it should and some
+       filters will not get applied.
+    */
+    const applyFilters = async () => {
         connectToDB();
 
-        /* This section is for finding the first selected filter and applying it to the database.
-           Once the first check box is found, the corresponding section will execute.
-           If the first checbox found has sub-options, the first of those will be selected and
+        /* This section is for finding the selected filters and applying them to a list of rooms.
+           Once a check box that has been selected is found, the corresponding section will execute.
+           If the checkbox that was found has sub-options, the first of those will be selected and
            the corresponding function will be called with the respective value for that sub-option
         */
         for(var i = 0; i < filters.length; i++){
-            // Finds first selected checkbox
+            // Finds all selected checkboxes
             if(filters[i].selected){
                // Selects proper section of code, depending on which checkbox was found
                switch(filters[i].filterItem){
                     case "Display":
-                        filterDisplay();
+                        await filterDisplay();
                         break;
                     case "Network":
                         // Loops through sub-options to find which one was selected
                         for(var j = 0; j < filters[i].values.length; j++){
                             if(filters[i].values[j]){
-                                filterNetwork(j);
+                                await filterNetwork(j);
                             }
                         }
                         break;
                     case "Video/Telecom":
-                        filterVidTel();
+                        await filterVidTel();
                         break;
                     case "Capacity":
                         // Loops through sub-options to find which one was selected
-                        for(var j = 0; j < filters[i].values.length; j++){
-                            if(filters[i].values[j]){
-                                filterCapacity(filters[i].subOptions[j]);
+                        for(var k = 0; k < filters[i].values.length; k++){
+                            if(filters[i].values[k]){
+                                await filterCapacity(filters[i].subOptions[k]);
                             }
                         }
                         break;
                     case "Building":
                         // Loops through sub-options to find which one was selected
-                        for(var j = 0; j < filters[i].values.length; j++){
-                            if(filters[i].values[j]){
-                                filterBuilding(j);
+                        for(var l = 0; l < filters[i].values.length; l++){
+                            if(filters[i].values[l]){
+                                await filterBuilding(l);
                             }
                         }
                         break;
                     case "Connectivity":
                         // Loops through sub-options to find which one was selected
-                        for(var j = 0; j < filters[i].values.length; j++){
-                            if(filters[i].values[j]){
-                                filterConnectivity(j);
+                        for(var m = 0; m < filters[i].values.length; m++){
+                            if(filters[i].values[m]){
+                                await filterConnectivity(m);
                             }
                         }
                         break;
                     default:
                         break;
-               }
-               thinHerd();
+               }   
             }
         }
     }
-
+    
+    /* This will call the function that updates the tmpRooms array each time
+       a database query is triggered.
+    */
     useEffect(() => {
-        console.log(tmpRooms);
-    }, [tmpRooms]);
+        thinHerd();
+        // Sets firstFilter to false after the first filter has been applied
+        if(firstFilter){
+            firstFilter = false;
+        }
+    }, [DBRooms]);
 
+    // Renders the "Apply" button
     return(
         <div className="filter-box">
             <button className="apply-button" onClick={() => applyFilters()}>Apply</button>

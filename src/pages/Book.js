@@ -15,7 +15,6 @@ export default function Book() {
   const tempName = [];
   const [date, setDate] = useState(new Date());
   const [filtered, setFiltered] = useState([]);
-  // const [reload, setReload] = useState();
 
   // Function for connecting to the db
   const connectToDB = async () => {
@@ -37,7 +36,7 @@ export default function Book() {
     var dateData = date.toISOString().substring(0, 10) 
     await axios(
       `http://localhost:3002/api/meetings/selectDay?day=${dateData}`,
-    ).then(response => {setMeetings(response.data)})
+    ).then(response => {setMeetings(response.data); setFiltered(response.data)})
     
   };
   
@@ -55,9 +54,8 @@ export default function Book() {
         let tmp = filtered.filter(item => item.room === meeting.room)
         return !(tmp.length === 0)
       })
-      var bool = meetings.some(item => item.room === "Room A");
+
       setMeetings(result);
-      console.log(meetings);
     }
   }, [filtered]);
   
@@ -78,8 +76,6 @@ export default function Book() {
         <p style={{display:"flex", flexDirection:"column", justifyContent:"top", minHeight:"120rem", gap:"1.5rem", paddingLeft:"1rem"}}>  
           <ConfirmButton meetings = {meetings}/>
           <Availability meetings = {meetings} setMeetings = {setMeetings}/>
-          
-          {console.log(meetings)}
         </p>
       </div>
     </div>
