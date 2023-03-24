@@ -1,12 +1,12 @@
 .Confirm-body {
-  background-color: rgb(175, 175, 175); /*background color*/
-  min-height: 90vh; /*minimun height of the body in % of the screen size*/
-  display: flex; /*unknown*/
-  flex-direction: column; /*whether the text will be aligned in columns or rows*/
+  background-color: rgb(175, 175, 175); 
+  min-height: 90vh; 
+  display: flex; 
+  flex-direction: column; 
   align-items: top;
   justify-content: center;
-  font-size: calc(10px + 2vmin); /*font size and text size*/
-  color: black; /*text color*/
+  font-size: calc(10px + 2vmin); 
+  color: black; 
   padding: 5%;
 }
 

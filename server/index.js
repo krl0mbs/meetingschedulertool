@@ -43,6 +43,23 @@ app.post("/api/meetings/updateMeetings", (req,res)=>{
     })
 })
 
+app.get("/api/meetings/selectDay", (req,res)=>{
+    db.query("USE meetingdb", (err,result)=>{
+        if(err) {
+            console.log(err)
+        } 
+    })
+    const date = req.query.day;
+    console.log(date);
+    db.query(`SELECT * FROM meetings WHERE date = ?`, date, (err,result)=> {
+        if(err) {
+            console.log(err)
+        } 
+        console.log(result)
+        res.send(result)
+    })
+})
+
 // Below here is unused code that stays to help understand what is going on
 
 app.get("/api/meetings/all", (req,res)=>{
@@ -73,6 +90,131 @@ db.query("INSERT INTO meetings (name) VALUES (?)",[name], (err,result)=> {
        console.log(err)
        } 
        console.log(result)
+    })
+})
+
+app.get("/api/meetings/allInfo", (req,res)=>{
+    db.query("SELECT * FROM roominfo", (err,result)=>{
+        if(err) {
+            console.log(err)
+        } 
+        res.send(result)
+    })
+})
+
+app.get("/api/meetings/allIds", (req,res)=>{
+    db.query("SELECT id, room_num FROM roominfo", (err,result)=>{
+        if(err) {
+            console.log(err)
+        } 
+        res.send(result)
+    })
+})
+
+// app.get("/api/meetings/singleInfo", (req,res)=>{
+//     const id = req.query.id;
+//     console.log(id);
+//     db.query(`SELECT * FROM roominfo WHERE id = ?`, id, (err,result)=> {
+//         if(err) {
+//             console.log(err)
+//         } 
+//         console.log(result)
+//         res.send(result)
+//     })
+// })
+
+app.get("/api/meetings/filterCapacity", (req,res)=>{
+    const min = req.query.min;
+    console.log(min);
+    db.query(`SELECT * FROM roominfo WHERE capacity >= ?`, min, (err,result)=> {
+        if(err) {
+            console.log(err)
+        } 
+        console.log(result)
+        res.send(result)
+    })
+})
+
+app.get("/api/meetings/filterDisplay", (req,res)=>{
+    db.query(`SELECT * FROM roominfo WHERE display = 1`, (err,result)=> {
+        if(err) {
+            console.log(err)
+        }
+        console.log(result) 
+        res.send(result)
+    })
+})
+
+app.get("/api/meetings/filterNetwork", (req,res)=>{
+    const net = req.query.net;
+    db.query(`SELECT * FROM roominfo WHERE network = ?`, net, (err,result)=> {
+        if(err) {
+            console.log(err)
+        } 
+        console.log(result)
+        res.send(result)
+    })
+})
+
+// app.get("/api/meetings/filterNetworkB", (req,res)=>{
+//     db.query(`SELECT room_num FROM roominfo WHERE networkB = 1`, (err,result)=> {
+//         if(err) {
+//             console.log(err)
+//         } 
+//         console.log(result)
+//         res.send(result)
+//     })
+// })
+
+app.get("/api/meetings/filterVidtelecon", (req,res)=>{
+    db.query(`SELECT * FROM roominfo WHERE vidtelecon = 1`, (err,result)=> {
+        if(err) {
+            console.log(err)
+        } 
+        console.log(result)
+        res.send(result)
+    })
+})
+
+app.get("/api/meetings/filterBuilding", (req,res)=>{
+    const build = req.query.build;
+    db.query(`SELECT * FROM roominfo WHERE building = ?`, build, (err,result)=> {
+        if(err) {
+            console.log(err)
+        } 
+        console.log(result)
+        res.send(result)
+    })
+})
+
+// app.get("/api/meetings/filterBuidling2", (req,res)=>{
+//     db.query(`SELECT room_num FROM roominfo WHERE building2 = 1`, (err,result)=> {
+//         if(err) {
+//             console.log(err)
+//         } 
+//         console.log(result)
+//         res.send(result)
+//     })
+// })
+
+// app.get("/api/meetings/filterBuilding3", (req,res)=>{
+//     db.query(`SELECT room_num FROM roominfo WHERE building3 = 1`, (err,result)=> {
+//         if(err) {
+//             console.log(err)
+//         } 
+//         console.log(result)
+//         res.send(result)
+//     })
+// })
+
+app.get("/api/meetings/filterConnectivity", (req,res)=>{
+    const con = req.query.con;
+    db.query(`SELECT * FROM roominfo WHERE connectivity = ?`, con, (err,result)=> {
+        if(err) {
+            console.log(err)
+        } 
+        console.log(result)
+        res.send(result)
     })
 })
 
