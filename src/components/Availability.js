@@ -20,13 +20,13 @@ import { Room } from './Room.js';
           </Table> 
         )
       })}
-
     </Table>
 )
 
 // styles for the left column
 const LeftColStyle ={ 
-    width: '10rem',
+    width: '7.5rem',
     display: 'flex', 
-    alignItems: 'center',
+    alignItems: 'left',
+    justifyContent: 'left'
 }

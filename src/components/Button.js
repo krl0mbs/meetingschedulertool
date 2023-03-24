@@ -46,13 +46,15 @@ const ButtonStyle ={
     width: '2rem', 
     height: '4rem', 
     backgroundColor: '#1f97e5',
+    border: '.05rem solid',
 }
   
 // styles for when a particular time is selected
 const ButtonSelected ={ 
     width: '2rem',
     height: '4rem',
-    backgroundColor: 'gray'
+    backgroundColor: 'gray',
+    border: '.05rem solid',
 }
   
   // styles for when a particular time is taken
@@ -60,4 +62,5 @@ const ButtonTaken ={
     width: '2rem',
     height: '4rem',
     backgroundColor: 'purple',
+    border: '.05rem solid',
 }

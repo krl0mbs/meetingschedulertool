@@ -1,17 +1,17 @@
-.App { /*defines properties of the App in general*/
+.App { 
   text-align: center;
 }
 
-.App-header { /*defines properties of the header only*/
+.App-header { 
   padding-left: 2.5%;
-  background-color: rgb(104, 104, 104); /*background color*/
-  min-height: 1rem; /*minimun height of the header in % of the screen size*/
-  display: flex; /*unknown*/
-  flex-direction: row; /*whether the text will be aligned in columns or rows*/
-  align-items: center; /*dont know the difference between these two*/
+  background-color: rgb(104, 104, 104); 
+  min-height: 1rem; 
+  display: flex; 
+  flex-direction: row; 
+  align-items: center; 
   justify-content: left;
-  font-size: calc(10px + 2vmin); /*font size and text size*/
-  color: black; /*text color*/
+  font-size: calc(10px + 2vmin); 
+  color: black; 
 }
 
 .button-style {

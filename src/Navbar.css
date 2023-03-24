@@ -1,5 +1,3 @@
-/*display: flex allows the alignment, padding, etc to be manipulated*/
-
 * { /*defines general settings for all display boxes*/
     box-sizing: border-box; /*defines how the box's witdth and height will be calculated*/
 }
@@ -17,6 +15,8 @@ nav { /*this block is for the navbar design, notice there is no period at the be
     gap: 2rem;
     padding: 0 1rem;
     min-height: 10vh;
+    position: sticky;
+    top: 0;
 } 
 
 .mst-home { /*modifies the website title, the leftmost navbar item*/

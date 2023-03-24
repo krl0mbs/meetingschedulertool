@@ -1,19 +1,53 @@
 .Book-body {
-  background-color: rgb(175, 175, 175); /*background color*/
-  min-height: 120rem; /*minimun height of the body in % of the screen size*/
-  display: flex; /*unknown*/
-  flex-direction: column; /*whether the text will be aligned in columns or rows*/
-  align-items: top; /*dont know the difference between these two*/
+  background-color: rgb(175, 175, 175); 
+  min-height: 120rem;
+  width:100%; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: top;
+  align-self: right; 
   justify-content: center;
-  font-size: calc(10px + 2vmin); /*font size and text size*/
-  color: black; /*text color*/
-  gap: 5rem;
-  padding: 5%;
+  font-size: calc(10px + 2vmin); 
+  color: black;
+  padding-right: 2rem;
+  padding-left: 285px;
 }
 
 .button-style {
   font-size: 12pt;
   display: flex;
   text-decoration: none;
+  gap: 0;
+  padding: 0;
+  margin: 0;
   border-radius: 100px;
+}
+
+.sidebar {
+  display: flex;
+  position: fixed;
+  flex-direction:column;
+  height: 90%;
+  background: #e0e0e0;
+  justify-content: top;
+  padding: 0px;
+  gap: 0px;
+  margin: 0;
+  overflow-y: scroll;
+}
+
+.keyBoxes {
+  display: flex;
+  flex-direction: row;
+  width: 1rem;
+  height: 1rem;
+  border: .07rem solid;
+  border-radius: .2rem;
+  align-self: center;
+}
+
+.keyName {
+  display:"flex";
+  flex-direction:"row";
+  padding-left: .5rem;
 }
