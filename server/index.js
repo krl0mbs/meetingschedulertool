@@ -218,6 +218,85 @@ app.get("/api/meetings/filterConnectivity", (req,res)=>{
     })
 })
 
+app.post("/api/meetings/addMeeting", (req,res)=>{
+    db.query("USE meetingdb", (err,result)=>{
+        if(err) {
+            console.log(err)
+        } 
+    })
+    const room = req.body.room;
+    const date = req.body.date;
+    const email = req.body.email;
+    const t7 = req.body.t7;
+    const t75 = req.body.t75;
+    const t8 = req.body.t8;
+    const t85 = req.body.t85;
+    const t9 = req.body.t9;
+    const t95 = req.body.t95;
+    const t10 = req.body.t10;
+    const t105 = req.body.t105;
+    const t11 = req.body.t11;
+    const t115 = req.body.t115;
+    const t12 = req.body.t12;
+    const t125 = req.body.t125;
+    const t13 = req.body.t13;
+    const t135 = req.body.t135;
+    const t14 = req.body.t14;
+    const t145 = req.body.t145;
+    const t15 = req.body.t15;
+    const t155 = req.body.t155;
+    const t16 = req.body.t16;
+    const t165 = req.body.t165;
+    const t17 = req.body.t17;
+    db.query(`INSERT INTO meetingsUser (room, date, email, \`7\`, \`7.5\`, \`8\`, \`8.5\`, \`9\`, \`9.5\`, \`10\`, \`10.5\`, \`11\`, \`11.5\`, \`12\`, 
+    \`12.5\`, \`13\`, \`13.5\`, \`14\`, \`14.5\`, \`15\`, \`15.5\`, \`16\`, \`16.5\`, \`17\`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 
+        ?, ?, ?, ?, ?, ?, ?, ?) `, room, date, email, t7, t75, t8, t85, t9, t95, t10, t105, t11, t115, t12, t125, t13, t135, t14, t145, t15, t155, 
+        t16, t165, t17, (err,result)=> {
+        if(err) {
+            console.log(err)
+        } 
+        console.log(result)
+    })
+})
+
+app.get("/api/meetings/allRes", (req,res)=>{
+    db.query(`SELECT * FROM meetingsUser`, (err,result)=> {
+        if(err) {
+            console.log(err)
+        } 
+        res.send(result)
+    })
+})
+
+app.get("/api/meetings/emailRes", (req,res)=>{
+    const email = req.query.email;
+    db.query(`SELECT * FROM meetingsUser WHERE email = ?`, email, (err,result)=> {
+        if(err) {
+            console.log(err)
+        } 
+        res.send(result)
+    })
+})
+
+app.get("/api/meetings/distRes", (req,res)=>{
+    db.query(`SELECT DISTINCT email FROM meetingsUser`, (err,result)=> {
+        if(err) {
+            console.log(err)
+        } 
+        res.send(result)
+    })
+})
+
+app.get("/api/meetings/password", (req,res)=>{
+    const email = req.query.email;
+    db.query(`SELECT password FROM users WHERE email = ?`, email, (err,result)=> {
+        if(err) {
+            console.log(err)
+        } 
+        res.send(result)
+    })
+})
+
 app.listen(PORT);
 // // Route to get one post
 // app.get("/api/getFromId/:id", (req,res)=>{
