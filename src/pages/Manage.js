@@ -1,5 +1,12 @@
 // Manage Bookings Page
+import Navbar from "../Navbar";
 import "./pageCSS/Manage.css";
 export default function Manage() {
-    return <body className="Manage-body">Manage Bookings page</body>
+    return (
+        <div>
+            <Navbar/>
+            <body className="Manage-body">Manage Bookings page
+            </body>
+        </div>
+    )
 }

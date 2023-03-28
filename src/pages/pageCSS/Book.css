@@ -33,7 +33,7 @@
   padding: 0px;
   gap: 0px;
   margin: 0;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .keyBoxes {
@@ -47,7 +47,12 @@
 }
 
 .keyName {
-  display:"flex";
-  flex-direction:"row";
+  display:flex;
+  flex-direction:row;
   padding-left: .5rem;
+}
+
+.keyTitle {
+  font-size: 18px;
+  color: #6f48eb;
 }

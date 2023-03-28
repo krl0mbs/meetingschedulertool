@@ -4,7 +4,7 @@ import { Link, useMatch, useResolvedPath} from "react-router-dom" // this librar
 export default function Navbar() {
     return (
     <nav>
-        <Link to="/" className="mst-home">Meeting Scheduler</Link> {/*uses the Link tag from react-router-dom*/}
+        <h1 className="mst-home">Meeting Scheduler</h1>
         <ul>
             <CustomLinks to="/bookroom">Book Room</CustomLinks>
             <CustomLinks to="/managebookings">Manage Bookings</CustomLinks> 

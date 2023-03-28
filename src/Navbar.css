@@ -14,14 +14,15 @@ nav { /*this block is for the navbar design, notice there is no period at the be
     align-items: stretch;
     gap: 2rem;
     padding: 0 1rem;
-    min-height: 10vh;
+    max-height: 10vh;
     position: sticky;
     top: 0;
 } 
 
 .mst-home { /*modifies the website title, the leftmost navbar item*/
     font-size: 1.5rem;
-    min-height: 10vh;
+    min-height: 5vh;
+    align-self: center;
 }
 
 .Container { /*used in App.js to modify what is displayed below the navbar*/

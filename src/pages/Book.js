@@ -8,6 +8,8 @@ import { useEffect, useState } from 'react';
 import axios from "axios";
 import { Calendar } from "react-calendar";
 
+import Navbar from "../Navbar";
+
 export default function Book() {
   // Various arrays that will be used to store db information
   const [meetings, setMeetings] = useState([]);
@@ -60,23 +62,26 @@ export default function Book() {
   }, [filtered]);
   
   return (
-    <div style={{display:"flex", flexDirection:"row"}}>
-      <div className="sidebar">
-        <TableKey />
-        <Calendar className='react-Calendar' calendarType="US" onChange={setDate} value={date} />
-        <CheckFilter setFiltered = {setFiltered}/>
-      </div>
-      <div className="Book-body">
-        {/* Map the name data gathered from the db to a temporary array that gets passed to the Availability tag */}
-        {
-          room.map((el) => {
-            tempName.push(el.room)
-          })
-        }
-        <p style={{display:"flex", flexDirection:"column", justifyContent:"top", minHeight:"120rem", gap:"1.5rem", paddingLeft:"1rem"}}>  
-          <ConfirmButton meetings = {meetings}/>
-          <Availability meetings = {meetings} setMeetings = {setMeetings}/>
-        </p>
+    <div>
+      <Navbar/>
+      <div style={{display:"flex", flexDirection:"row"}}>
+        <div className="sidebar">
+          <TableKey/>
+          <Calendar className='react-Calendar' calendarType="US" onChange={setDate} value={date} />
+          <CheckFilter setFiltered = {setFiltered}/>
+        </div>
+        <div className="Book-body">
+          {/* Map the name data gathered from the db to a temporary array that gets passed to the Availability tag */}
+          {
+            room.map((el) => {
+              tempName.push(el.room)
+            })
+          }
+          <p style={{display:"flex", flexDirection:"column", justifyContent:"top", minHeight:"120rem", gap:"1.5rem", paddingLeft:"1rem"}}>  
+            <ConfirmButton meetings = {meetings}/>
+            <Availability meetings = {meetings} setMeetings = {setMeetings}/>
+          </p>
+        </div>
       </div>
     </div>
     )

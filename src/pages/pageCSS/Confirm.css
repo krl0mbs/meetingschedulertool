@@ -1,6 +1,6 @@
 .Confirm-body {
   background-color: rgb(175, 175, 175); 
-  min-height: 90vh; 
+  min-height: 100vh; 
   display: flex; 
   flex-direction: column; 
   align-items: top;
