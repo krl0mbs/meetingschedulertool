@@ -12,11 +12,11 @@ export default function Confirm(){
             'http://localhost:3002/api/meetings/connect',
         )
     };
-
+    
     useEffect(() => {
         connectToDB();
     }, []);
-
+    
     let location = useLocation();
 
     /* This is where the webpage will pass its data to the database.
