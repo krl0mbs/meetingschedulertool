@@ -62,8 +62,6 @@ export default function Book() {
   }, [filtered]);
   
   return (
-    <div>
-      <Navbar/>
       <div style={{display:"flex", flexDirection:"row"}}>
         <div className="sidebar">
           <TableKey/>
@@ -83,6 +81,5 @@ export default function Book() {
           </p>
         </div>
       </div>
-    </div>
     )
 }

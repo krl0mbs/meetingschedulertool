@@ -17,6 +17,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
+      <Navbar/>
       <div className="Container">
         <Routes> 
           <Route path="/" element={<Login/>}/>
