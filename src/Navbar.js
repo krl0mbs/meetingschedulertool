@@ -1,4 +1,5 @@
 import "./Navbar.css";
+import LogoutButton from "./components/LogOutButton";
 import { Link, useMatch, useResolvedPath} from "react-router-dom" // this library helps with making routes to other pages, offers better functionality than using regular tags
 
 export default function Navbar() {
@@ -9,6 +10,7 @@ export default function Navbar() {
             <CustomLinks to="/bookroom">Book Room</CustomLinks>
             <CustomLinks to="/managebookings">Manage Bookings</CustomLinks> 
             <CustomLinks to="/about">About</CustomLinks>
+            <LogoutButton/>
         </ul>
     </nav>
     );

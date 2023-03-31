@@ -7,6 +7,7 @@ import { TableKey } from "../components/TableKey";
 import { useEffect, useState } from 'react';
 import axios from "axios";
 import { Calendar } from "react-calendar";
+import { useAuth0 } from "@auth0/auth0-react";
 
 import Navbar from "../Navbar";
 
@@ -60,6 +61,16 @@ export default function Book() {
       setMeetings(result);
     }
   }, [filtered]);
+
+  const {isLoading, loginWithRedirect, isAuthenticated} = useAuth0();
+
+    useEffect(() => {
+        (async function login() {
+            if (!isLoading && !isAuthenticated) {
+                await loginWithRedirect();
+            }
+        })();
+  }, []);
   
   return (
       <div style={{display:"flex", flexDirection:"row"}}>

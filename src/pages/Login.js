@@ -15,8 +15,10 @@ export default function Home() {
                 await loginWithRedirect();
             }
         })();
-    }, []);
-
+        // window.addEventListener('DOMContentLoaded', (event) => {
+        // });
+    }, [isLoading]);
+    
     return <div className="Login-body">
         <h1>Log in to begin booking</h1>
         <div style={{display:'flex', flexDirection:'column', minWidth:"15rem"}}>
