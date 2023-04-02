@@ -1,11 +1,14 @@
 import "./pageCSS/Confirm.css";
 import { Room } from "../components/Room";
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import axios from "axios";
 import { useLocation, Link } from "react-router-dom";
 import React from 'react';
+import emailjs from 'emailjs-com';
 
 export default function Confirm(){
+    const form = useRef();
+
     // Function for connecting to the db
     const connectToDB = async () => {
         const result = await axios(
@@ -82,8 +85,23 @@ export default function Confirm(){
     
         // Begins process of breaking down object array for databse update
         location.state.data.meetings.forEach((booking) =>  ExtractRowUpdate(booking));
+        //sendEmail();
     }
-
+    
+    // const sendEmail = (e) => {
+    //     e.preventDefault();
+    //     var to_email = "jonathanccarreiro@gmail.com";
+    //     var message = "testing";
+    //     var to_name = "Jonathan";
+    //     var from_name = "Tester";
+    
+    //     emailjs.sendForm('service_38yc7ei', 'template_j0mkqko', form.current, 'QMG02Pb221yHc9yEE')
+    //       .then((result) => {
+    //           console.log(result.text);
+    //       }, (error) => {
+    //           console.log(error.text);
+    //       });
+    // };
 
     // Begins search for new bookings at the row (Room) level
     // This is where the Cancel and Sumbit buttons are rendered
