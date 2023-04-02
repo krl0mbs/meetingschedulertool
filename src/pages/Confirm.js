@@ -109,8 +109,8 @@ export default function Confirm(){
         <body className="Confirm-body">   
             {location.state.data.meetings.map((booking) => <Room meeting = {booking} returnType = {2}/>)}  
             <div className="row-align">
-                <Link to="/bookroom" className="button-style" onClick={updateData}>Submit</Link>
-                <Link to="/bookroom" className="button-style">Cancel</Link>
+                <Link to="/" className="button-style" onClick={updateData}>Submit</Link>
+                <Link to="/" className="button-style">Cancel</Link>
             </div> 
         </body>
     )  
