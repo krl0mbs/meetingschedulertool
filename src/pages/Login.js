@@ -1,8 +1,7 @@
 // Login Page
 import "./pageCSS/Login.css";
 import LoginButton from "../components/LoginButton";
-import LogOutButton from "../components/LogOutButton";
-import { Link } from "react-router-dom";
+import LogOutButton from "../components/LogoutButton";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 

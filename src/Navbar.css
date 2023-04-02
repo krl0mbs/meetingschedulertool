@@ -55,3 +55,22 @@ nav li:hover { /*this block is used when a navbar item is hovered*/
     background-color: #777;
 }
 
+.logout {
+    background-color: #333;
+    color: #ccc;
+    display: flex; 
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 2rem;
+    padding: 0 .3rem;
+    max-height: 10vh;
+    position: sticky;
+    top: 0;
+    border-style: none;
+    font-size: 12pt;
+    align-items: center;
+}
+
+.logout:hover {
+    background-color: #777;
+}

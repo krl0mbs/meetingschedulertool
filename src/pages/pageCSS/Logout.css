@@ -1,0 +1,15 @@
+.Logout-body {
+    background-color: #555;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+    color: #fff;
+    flex-direction: column;
+}
+
+.text {
+    display: flex;
+    font-weight: normal;
+    margin: 0;
+}

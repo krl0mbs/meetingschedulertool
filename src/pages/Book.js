@@ -64,13 +64,15 @@ export default function Book() {
 
   const {isLoading, loginWithRedirect, isAuthenticated} = useAuth0();
 
-    useEffect(() => {
-        (async function login() {
-            if (!isLoading && !isAuthenticated) {
-                await loginWithRedirect();
-            }
-        })();
-  }, []);
+  useEffect(() => {
+    (async function login() {
+        if (!isLoading && !isAuthenticated) {
+            await loginWithRedirect();
+        }
+    })();
+    // window.addEventListener('DOMContentLoaded', (event) => {
+    // });
+}, [isLoading]);
   
   return (
       <div style={{display:"flex", flexDirection:"row"}}>
