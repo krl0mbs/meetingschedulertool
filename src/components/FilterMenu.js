@@ -1,10 +1,20 @@
+// This file is used to create the filter menu that appear on the left sidebar
+
 import { Checkbox } from "./Checkbox";
 import { ApplyFilters } from "./ApplyFilters";
 import { useState, useEffect } from "react";
 
 export const CheckFilter = ({setFiltered}) => {
     /* This is an object array that will hold all of the checkboxes in the "Filters" section.
-       The "filterItem" prop is the name of the checkbox,
+       The "filterItem" prop is the name of the checkbox
+
+       To add a new filter, create another entry as follows:
+            { filterItem: "Name of Filter", selected: false, subOptions: [ Names of suboptions as a list ], values: new Array( Number of Suboptions ).fill(false) }
+        
+            A new column must be added to the roominfo table on the backend
+            corresponding to the new filter. A new query to fetch rooms with that attribute
+            must be added to index.js in the server folder and then implemented in ApplyFilters.js.
+            For implementation details, check ApplyFilter.js.
     */
     const [filters, setFilters] = useState([
         { filterItem: "Display", selected: false, subOptions: [], values: new Array(3).fill(false) },
@@ -50,6 +60,7 @@ export const CheckFilter = ({setFiltered}) => {
             {filters.map(({ filterItem, selected, subOptions, values }, i) => (
                 <div key={i}>
                     <label htmlFor={i}>
+                        {/* for implementation details of Checkbox, see Checkbox.js */}
                         <Checkbox
                             checkHandler={() => checkHandler(selected, i)}
                             label={filterItem}
@@ -62,6 +73,7 @@ export const CheckFilter = ({setFiltered}) => {
                     </label>
                 </div>
             ))}
+            {/* creates the apply button, see ApplyFilters.js for implementation details */}
             <ApplyFilters filters = {filters} setFilteredRooms = {setFiltered}/>
         </div>
     )

@@ -1,3 +1,6 @@
+/* This file contains formatting for the Calendar component */
+/* This is an imported library so most of the css is default and unused */
+
 .react-calendar { 
   width: 260px;
   max-width: 100%;

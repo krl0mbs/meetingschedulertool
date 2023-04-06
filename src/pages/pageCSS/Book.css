@@ -1,3 +1,6 @@
+/* This file contains formatting for the Book page */
+
+/* Formattingg for the body of the Book page */
 .Book-body {
   background-color: rgb(175, 175, 175); 
   min-height: 120rem;
@@ -13,6 +16,7 @@
   padding-left: 285px;
 }
 
+/* Formattingg for the confirm button on the top of the book page */
 .button-style {
   font-size: 12pt;
   display: flex;
@@ -20,9 +24,10 @@
   gap: 0;
   padding: 0;
   margin: 0;
-  border-radius: 100px;
+  border-radius: 12px;
 }
 
+/* Formatting for the sidebar on the left side of the book page */
 .sidebar {
   display: flex;
   position: fixed;
@@ -36,6 +41,7 @@
   overflow-y: auto;
 }
 
+/* Formatting for each of the colored boxes in the key */
 .keyBoxes {
   display: flex;
   flex-direction: row;
@@ -46,12 +52,14 @@
   align-self: center;
 }
 
+/* Formatting for the labels of each item in the key */
 .keyName {
   display:flex;
   flex-direction:row;
   padding-left: .5rem;
 }
 
+/* Formatting for the header of the key box */
 .keyTitle {
   font-size: 18px;
   color: #6f48eb;

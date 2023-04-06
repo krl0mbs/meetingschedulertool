@@ -1,3 +1,5 @@
+// This file is for the individial buttons on the availability table
+
 import {useEffect, useState} from 'react';
 
 /* This is a function that will create each individual button.
@@ -9,14 +11,13 @@ export const Button = ({availabilty, timeslot, name, meetings, setMeetings}) => 
     // Constant that will be used to flip blue buttons to gray (selected) and gray buttons to blue based on the availability
     const [isActive, setIsActive] = useState(availabilty == 2 ? true : false);
 
+    // Math to calculate the offset from array index to room timeslot
     const indexMod = timeslot*.5;
     timeslot += 7-indexMod;
 
-    const doPurp = availabilty;
-
     /* This click handler will duplicate the meeting info array and then find the room that corresponds to the current row.
-        Then the duplicate array will find the current time slot for the current row and modify the value in the array (2 for gray, 0 for blue).
-        Finally, the modified array gets duplicated back into the correct index in the meeting info object array.
+       Then the duplicate array will find the current time slot for the current row and modify the value in the array (2 for gray, 0 for blue).
+       Finally, the modified array gets duplicated back into the correct index in the meeting info object array.
     */
     const clickHandler = () => {
         let array2 = meetings.map(a => {return {...a}})
@@ -27,13 +28,13 @@ export const Button = ({availabilty, timeslot, name, meetings, setMeetings}) => 
     }
 
     // Checks if timeslot for button is available. If no, make it purple. If yes, make it blue with a click handler
-    if(doPurp == 1){
+    if(availabilty == 1){
         return (
             <button style={ButtonTaken}></button>
         )
     }
     
-    else if(doPurp != 1){ 
+    else if(availabilty != 1){ 
         // if the button is clicked, it will change from blue to grey and vice-versa
         return (
             <button style={(isActive ? ButtonSelected : ButtonStyle) } onClick = {clickHandler}></button>

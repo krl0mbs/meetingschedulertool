@@ -1,19 +1,10 @@
+/* General Formatting for the application */
+
 .App { 
   text-align: center;
 }
 
-.App-header { 
-  padding-left: 2.5%;
-  background-color: rgb(104, 104, 104); 
-  min-height: 1rem; 
-  display: flex; 
-  flex-direction: row; 
-  align-items: center; 
-  justify-content: left;
-  font-size: calc(10px + 2vmin); 
-  color: black; 
-}
-
+/* Formatting for most general buttons like the confirm button */
 .button-style {
   width: 5rem;
   height: 2rem;
@@ -21,10 +12,4 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.right-side {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
 }

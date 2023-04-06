@@ -1,3 +1,5 @@
+/* This file contains formatting for the navigation bar */
+
 * { /*defines general settings for all display boxes*/
     box-sizing: border-box; /*defines how the box's witdth and height will be calculated*/
 }
@@ -55,7 +57,8 @@ nav li:hover { /*this block is used when a navbar item is hovered*/
     background-color: #777;
 }
 
-.logout {
+/* This block is for the logout button specifically as it functions differently from other navbar buttons */
+.logout { 
     background-color: #333;
     color: #ccc;
     display: flex; 
@@ -71,6 +74,7 @@ nav li:hover { /*this block is used when a navbar item is hovered*/
     align-items: center;
 }
 
+/* This block changes the background color when the logout button is hovered over */
 .logout:hover {
     background-color: #777;
 }

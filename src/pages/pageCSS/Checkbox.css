@@ -1,3 +1,6 @@
+/* This file contains formatting for the FilterMenu component */
+
+/* Formatting for the individual checkboxes */
 .checkbox-wrapper input[type="checkbox"] {
     width: 1.2em;
     height: 1.2em;
@@ -9,11 +12,13 @@
     justify-content: left;
 }
 
+/* Formatting for the label to the right of the checobx */
 .checkbox-label {
     display: flex;
     font-size: 12pt;
 }
 
+/* Formatting for the subboxes */
 .subBox-wrapper input[type="checkbox"] {
     width: 1em;
     height: 1em;
@@ -26,11 +31,13 @@
     justify-content: left;
 }
 
+/* Formatting for the label of the subboxes */
 .subBox-label {
     display: flex;
     font-size: 10pt;
 }
 
+/* Formatting for the box containing the filter menu*/
 .filter-box {
     display: flex;
     gap: .5rem;
@@ -39,6 +46,7 @@
     padding: .5rem 1rem .8rem 1rem;
 }
 
+/* Formatting for the apply button */
 .apply-button {
     background-color:#6f48eb;
     border-width: 0;
@@ -53,6 +61,7 @@
     display: flex;
 }
 
+/* Formatting for when the cursor is on the apply button */
 .apply-button:hover {
     background-color: rgba(111,72,235, .8);
 }

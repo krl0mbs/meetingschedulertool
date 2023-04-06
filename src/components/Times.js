@@ -1,3 +1,5 @@
+// This file is used to store the values that label each time column
+
 // exclusively holds the values that belong in the first row, ie the times that meetings can be held
 export const Times = () => ( 
     <> 

@@ -1,3 +1,5 @@
+// This file is used to create the confirm button that appears above the booking table
+
 import { Link } from "react-router-dom";
 
 // Attempting to make a button class that has the capability to turn selected buttons purple
@@ -10,5 +12,4 @@ export const ConfirmButton = (meetings) => {
         <Link to="/confirm" state={{data: meetings}} className="button-style">Confirm</Link>
     </div>
     );
-    
 }

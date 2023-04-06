@@ -1,3 +1,6 @@
+/* This file contains formatting for the Logout page */
+
+/* Formattingg for the body of the Logout page */
 .Logout-body {
     background-color: #555;
     display: flex;
@@ -8,6 +11,7 @@
     flex-direction: column;
 }
 
+/* Formatting for the text on the page */
 .text {
     display: flex;
     font-weight: normal;

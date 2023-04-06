@@ -1,3 +1,5 @@
+// This file isolates the rooms for creating the booking table and the corresponding message on the confirmation page.
+
 import { Button } from './Button';
 import { ExtractTime } from './ExtractTime';
 import {useEffect, useState} from 'react';
@@ -53,6 +55,7 @@ export const Room = ({meeting, meetings, setMeetings, returnType})  => { // bloc
       <>
         <h4 style={LeftColStyle}>{meeting.room}</h4>
         {tempTimes.map((e, idx) => {
+          // For implementation details of Button, see Button.js
           return <Button availabilty = {e} timeslot = {idx} name = {meeting.room} meetings = {meetings} setMeetings = {setMeetings} />
         })}
       </>
@@ -66,6 +69,7 @@ export const Room = ({meeting, meetings, setMeetings, returnType})  => { // bloc
           <h4>You have booked {meeting.room} for the following times:</h4>
           <div style={{display:"flex", justifyContent:"center",flexDirection:"row", gap:"2rem"}}>
             {tempTimes.map((e, idx) => {
+              // for implementation details of ExtractTime, see ExtractTime.js
               return <ExtractTime availability = {e} timeslot = {idx}></ExtractTime>
             })}
           </div>

@@ -1,3 +1,5 @@
+// This file is used to create the login button seen after logging out
+
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import "../pages/pageCSS/Logout.css";
@@ -22,6 +24,7 @@ const LoginButton = () => {
           justifyContent:'center'
         }
       } 
+      // loginWithRedirect is included in the Auth0 library
       onClick={() => loginWithRedirect()}>
       Log In
     </button>

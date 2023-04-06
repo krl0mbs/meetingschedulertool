@@ -1,6 +1,8 @@
+// This file is for the Table component and its formatting
+
 import React from 'react';
 
-// Creates the table object. Mouse over a property to see what it does
+// Creates the Table component wiht the following properties. Mouse over a property to see what it does
 const Table = (props) => (
   <div
     className={props.className}

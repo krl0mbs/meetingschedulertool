@@ -1,25 +1,26 @@
+// This file is for the Confirmation page and its logic
+
 import "./pageCSS/Confirm.css";
 import { Room } from "../components/Room";
 import {useEffect, useRef, useState} from 'react';
 import axios from "axios";
 import { useLocation, Link } from "react-router-dom";
 import React from 'react';
-import emailjs from 'emailjs-com';
 
 export default function Confirm(){
-    const form = useRef();
-
     // Function for connecting to the db
     const connectToDB = async () => {
         const result = await axios(
             'http://localhost:3002/api/meetings/connect',
         )
     };
-    
+   
+    // Connects to the database
     useEffect(() => {
         connectToDB();
     }, []);
     
+    // Stores meeting information from previous page
     let location = useLocation();
 
     /* This is where the webpage will pass its data to the database.
@@ -67,6 +68,7 @@ export default function Confirm(){
                         const idxMod = idx*.5;
                         idx += 7-idxMod;
                         
+                        // Updates database
                         fetch("http://localhost:3002/api/meetings/updateMeetings", {
                             method: 'POST',
                             headers: {
@@ -85,23 +87,7 @@ export default function Confirm(){
     
         // Begins process of breaking down object array for databse update
         location.state.data.meetings.forEach((booking) =>  ExtractRowUpdate(booking));
-        //sendEmail();
     }
-    
-    // const sendEmail = (e) => {
-    //     e.preventDefault();
-    //     var to_email = "jonathanccarreiro@gmail.com";
-    //     var message = "testing";
-    //     var to_name = "Jonathan";
-    //     var from_name = "Tester";
-    
-    //     emailjs.sendForm('service_38yc7ei', 'template_j0mkqko', form.current, 'QMG02Pb221yHc9yEE')
-    //       .then((result) => {
-    //           console.log(result.text);
-    //       }, (error) => {
-    //           console.log(error.text);
-    //       });
-    // };
 
     // Begins search for new bookings at the row (Room) level
     // This is where the Cancel and Sumbit buttons are rendered

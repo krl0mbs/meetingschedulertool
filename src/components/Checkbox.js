@@ -1,3 +1,5 @@
+// This file is for the checkboxes used in the filter 
+
 import "../pages/pageCSS/Checkbox.css";
 import { useState } from "react"; 
 
@@ -7,6 +9,7 @@ export const Checkbox = ({ label, checkHandler, selected, subOptions, values, su
       // This section of code creates a checkbox based on the label and checkHandler props
       <div className="checkbox-wrapper">
         <label className="checkbox-label">
+          {/* checkHandler is passed in from the FilterMenu, go to FilterMenu.js for more information */}
           <input type="checkbox" onChange = {checkHandler} />
           <span>{label}</span>
         </label>
@@ -18,11 +21,12 @@ export const Checkbox = ({ label, checkHandler, selected, subOptions, values, su
         */}
         { selected && // Makes it so the suboptions only appear when the main checkbox is selected
          <div> 
-            {/* {map through suboptions } */}
+            {/* map through suboptions */}
             {subOptions.map((suboptions, i) => (
               <div key = {i} className="subBox-wrapper">
                 <label className="subBox-label">
-                  <input type="checkbox" onChange = {() => subBoxHandler(values, i, FilterIndex)} />
+                  {/* subBoxHandler is passed in from the FilterMenu, go to FilterMenu.js for more information */}
+                  <input type="checkbox" onChange = {() => subBoxHandler(values, i, FilterIndex)} /> 
                   <span>{subOptions[i]}</span>
                 </label>
               </div>

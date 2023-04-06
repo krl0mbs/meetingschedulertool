@@ -1,3 +1,5 @@
+// This file contains the logic for applying filters upon clicking "Apply"
+
 import { useEffect, useState } from 'react';
 import axios from "axios";
 
@@ -7,6 +9,8 @@ export const ApplyFilters = ({filters, setFilteredRooms}) => {
        database query. Holds the result of the query and cross references it with tmpRooms to
        find the overlap (rooms that match both filters). firstFilter is a simple boolean to track
        if the current filter being applied is the first one.
+
+       When adding a new filter, create a new function like the ones below to call the appropriate query.
     */
     const [tmpRooms, setTmpRooms] = useState([]);
     const [DBRooms, setDBRooms] = useState([]);
@@ -109,6 +113,8 @@ export const ApplyFilters = ({filters, setFilteredRooms}) => {
             // Finds all selected checkboxes
             if(filters[i].selected){
                // Selects proper section of code, depending on which checkbox was found
+
+               // When adding a new filter, create a new case with the filter name, implemented the same as the ones below
                switch(filters[i].filterItem){
                     case "Display":
                         await filterDisplay();

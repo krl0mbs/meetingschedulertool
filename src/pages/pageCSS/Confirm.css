@@ -1,3 +1,6 @@
+/* This file contains formatting for the Confirm page */
+
+/* Formattingg for the body of the Book page */
 .Confirm-body {
   background-color: rgb(175, 175, 175); 
   min-height: 100vh; 
@@ -10,6 +13,7 @@
   padding: 5%;
 }
 
+/* Formatting for the buttons on the confirm page (Submit and Cancel) */
 .button-style {
   font-size: 12pt;
   display: flex;
@@ -17,6 +21,7 @@
   text-decoration: none;
 }
 
+/* Formatting for aligning the buttons on the page */
 .row-align {
   display: flex;
   flex-direction: row;
