@@ -1,3 +1,6 @@
+// This file contains all SQL code that is passed to the MySQL server thorugh API calls
+
+// These constants are used to ensure a local environment is achieved
 const express = require('express');
 const db = require('./config/db');
 const cors = require('cors');
@@ -8,22 +11,7 @@ const PORT = 3002;
 app.use(cors());
 app.use(express.json());
 
-app.get("/api/meetings/distinct", (req,res)=>{
-db.query("SELECT DISTINCT room FROM meetings", (err,result)=>{
-    if(err) {
-    console.log(err)
-    } 
-res.send(result)
-});   });
-
-app.get("/api/meetings/reservations", (req,res)=>{
-db.query("SELECT * FROM meetings", (err,result)=>{
-    if(err) {
-    console.log(err)
-    } 
-res.send(result)
-});   });
-
+// Query used to update the availability for a room
 app.post("/api/meetings/updateMeetings", (req,res)=>{
     db.query("USE meetingdb", (err,result)=>{
         if(err) {
@@ -43,6 +31,7 @@ app.post("/api/meetings/updateMeetings", (req,res)=>{
     })
 })
 
+// Gets all reservations for a room given the selected date
 app.get("/api/meetings/selectDay", (req,res)=>{
     db.query("USE meetingdb", (err,result)=>{
         if(err) {
@@ -60,8 +49,7 @@ app.get("/api/meetings/selectDay", (req,res)=>{
     })
 })
 
-// Below here is unused code that stays to help understand what is going on
-
+// Deprecated API call to return all entries in the meetings table (can be used for debugging)
 app.get("/api/meetings/all", (req,res)=>{
 db.query("SELECT * FROM meetings", (err,result)=>{
     if(err) {
@@ -70,10 +58,7 @@ db.query("SELECT * FROM meetings", (err,result)=>{
 res.send(result)
 });   });
 
-app.get("/api/meetings/one", (req,res)=>{
-    res.send({"message": "Success"});
-});
-
+// Connects the node to the MySQL server
 app.get("/api/meetings/connect", (req,res)=>{
 db.query("USE meetingdb", (err,result)=>{
     if(err) {
@@ -82,6 +67,7 @@ db.query("USE meetingdb", (err,result)=>{
 res.send({"message": "Success"})
 });    });
 
+// Deprecated API call to create entry in meetings table. Can be modified to create entries in other tables
 app.post("/api/meetings/post", (req,res)=>{
 const name = req.body.name;
 console.log(name);
@@ -93,6 +79,7 @@ db.query("INSERT INTO meetings (name) VALUES (?)",[name], (err,result)=> {
     })
 })
 
+// Returns all filter related attributes for all rooms
 app.get("/api/meetings/allInfo", (req,res)=>{
     db.query("SELECT * FROM roominfo", (err,result)=>{
         if(err) {
@@ -102,27 +89,9 @@ app.get("/api/meetings/allInfo", (req,res)=>{
     })
 })
 
-app.get("/api/meetings/allIds", (req,res)=>{
-    db.query("SELECT id, room_num FROM roominfo", (err,result)=>{
-        if(err) {
-            console.log(err)
-        } 
-        res.send(result)
-    })
-})
+// API CALLS BELOW THIS POINT ARE RELATED TO THE FILTER FUNCTION
 
-// app.get("/api/meetings/singleInfo", (req,res)=>{
-//     const id = req.query.id;
-//     console.log(id);
-//     db.query(`SELECT * FROM roominfo WHERE id = ?`, id, (err,result)=> {
-//         if(err) {
-//             console.log(err)
-//         } 
-//         console.log(result)
-//         res.send(result)
-//     })
-// })
-
+// Gets all rooms with capacity greater than or equal to some variable x (min)
 app.get("/api/meetings/filterCapacity", (req,res)=>{
     const min = req.query.min;
     console.log(min);
@@ -135,6 +104,7 @@ app.get("/api/meetings/filterCapacity", (req,res)=>{
     })
 })
 
+// Gets all rooms with a display
 app.get("/api/meetings/filterDisplay", (req,res)=>{
     db.query(`SELECT * FROM roominfo WHERE display = 1`, (err,result)=> {
         if(err) {
@@ -145,6 +115,7 @@ app.get("/api/meetings/filterDisplay", (req,res)=>{
     })
 })
 
+// Gets all rooms with the specified network
 app.get("/api/meetings/filterNetwork", (req,res)=>{
     const net = req.query.net;
     db.query(`SELECT * FROM roominfo WHERE network = ?`, net, (err,result)=> {
@@ -156,16 +127,7 @@ app.get("/api/meetings/filterNetwork", (req,res)=>{
     })
 })
 
-// app.get("/api/meetings/filterNetworkB", (req,res)=>{
-//     db.query(`SELECT room_num FROM roominfo WHERE networkB = 1`, (err,result)=> {
-//         if(err) {
-//             console.log(err)
-//         } 
-//         console.log(result)
-//         res.send(result)
-//     })
-// })
-
+// Gets all rooms with video/telecon capabilities
 app.get("/api/meetings/filterVidtelecon", (req,res)=>{
     db.query(`SELECT * FROM roominfo WHERE vidtelecon = 1`, (err,result)=> {
         if(err) {
@@ -176,6 +138,7 @@ app.get("/api/meetings/filterVidtelecon", (req,res)=>{
     })
 })
 
+// Gets all rooms in the specified building
 app.get("/api/meetings/filterBuilding", (req,res)=>{
     const build = req.query.build;
     db.query(`SELECT * FROM roominfo WHERE building = ?`, build, (err,result)=> {
@@ -187,26 +150,8 @@ app.get("/api/meetings/filterBuilding", (req,res)=>{
     })
 })
 
-// app.get("/api/meetings/filterBuidling2", (req,res)=>{
-//     db.query(`SELECT room_num FROM roominfo WHERE building2 = 1`, (err,result)=> {
-//         if(err) {
-//             console.log(err)
-//         } 
-//         console.log(result)
-//         res.send(result)
-//     })
-// })
 
-// app.get("/api/meetings/filterBuilding3", (req,res)=>{
-//     db.query(`SELECT room_num FROM roominfo WHERE building3 = 1`, (err,result)=> {
-//         if(err) {
-//             console.log(err)
-//         } 
-//         console.log(result)
-//         res.send(result)
-//     })
-// })
-
+// Gets all rooms with the specified connectivity type
 app.get("/api/meetings/filterConnectivity", (req,res)=>{
     const con = req.query.con;
     db.query(`SELECT * FROM roominfo WHERE connectivity = ?`, con, (err,result)=> {
@@ -219,50 +164,3 @@ app.get("/api/meetings/filterConnectivity", (req,res)=>{
 })
 
 app.listen(PORT);
-// // Route to get one post
-// app.get("/api/getFromId/:id", (req,res)=>{
-// const id = req.params.id;
-//  db.query("SELECT * FROM posts WHERE id = ?", id, 
-//  (err,result)=>{
-//     if(err) {
-//     console.log(err)
-//     } 
-//     res.send(result)
-//     });   });
-
-// // Route for creating the post
-// app.post('/api/create', (req,res)=> {
-// const username = req.body.userName;
-// const title = req.body.title;
-// const text = req.body.text;
-// db.query("INSERT INTO posts (title, post_text, user_name) VALUES (?,?,?)",[title,text,username], (err,result)=>{
-//    if(err) {
-//    console.log(err)
-//    } 
-//    console.log(result)
-// });   })
-
-// // Route to like a post
-// app.post('/api/like/:id',(req,res)=>{
-
-// const id = req.params.id;
-// db.query("UPDATE posts SET likes = likes + 1 WHERE id = ?",id, (err,result)=>{
-//     if(err) {
-//    console.log(err)   } 
-//    console.log(result)
-//     });    
-// });
-
-// // Route to delete a post
-
-// app.delete('/api/delete/:id',(req,res)=>{
-// const id = req.params.id;
-
-// db.query("DELETE FROM posts WHERE id= ?", id, (err,result)=>{
-// if(err) {
-// console.log(err)
-//         } }) })
-
-// app.listen(PORT, ()=>{
-//     console.log(`Server is running on ${PORT}`)
-// })
